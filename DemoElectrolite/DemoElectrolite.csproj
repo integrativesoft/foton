@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Electrolite\Electrolite.csproj" />
+  </ItemGroup>
+
 </Project>

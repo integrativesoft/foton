@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Electrolite.Common", "Electrolite.Common\Electrolite.Common.csproj", "{1F246A22-B107-4CB2-A7AE-AE706A6BC657}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Electrolite.Unix", "Electrolite.Unix\Electrolite.Unix.csproj", "{1C5EE7EA-78BF-4CED-8C62-B9D5A4AE6BAB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AF4E39C6-ED98-4FCB-938B-2CDD22DFCBB7} = {AF4E39C6-ED98-4FCB-938B-2CDD22DFCBB7}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{A3F689BA-7ACF-466C-A6E2-B186EFC852D0}"
 	ProjectSection(SolutionItems) = preProject
@@ -19,6 +22,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoElectrolite", "DemoElectrolite\DemoElectrolite.csproj", "{B9678E9B-990C-44D7-B976-42AD59F4C6FB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Electrolite.Windows", "Electrolite.Windows\Electrolite.Windows.csproj", "{D15653F0-ED71-4369-8638-B89FBDBF6244}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AF4E39C6-ED98-4FCB-938B-2CDD22DFCBB7} = {AF4E39C6-ED98-4FCB-938B-2CDD22DFCBB7}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

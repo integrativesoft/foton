@@ -27,11 +27,11 @@ namespace Electrolite.Main
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                return null;
+                return LoadWindows();
             }
             else
             {
-                return null;
+                return LoadUnix();
             }
         }
 
@@ -42,7 +42,7 @@ namespace Electrolite.Main
 
         private static IElectrolite LoadUnix()
         {
-            return null;
+            throw new NotImplementedException();
         }
     }
 }

@@ -32,4 +32,7 @@
       None
     </ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
   </PropertyGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy $(TargetPath) $(SolutionDir)Electrolite\bin\$(ConfigurationName)\*.* /y&#xD;&#xA;xcopy $(TargetDir)x64\*.* $(SolutionDir)Electrolite\bin\$(ConfigurationName)\x64\*.* /e /y&#xD;&#xA;xcopy $(TargetDir)x86\*.* $(SolutionDir)Electrolite\bin\$(ConfigurationName)\x86\*.* /e /y&#xD;&#xA;" />
+  </Target>
 </Project>
