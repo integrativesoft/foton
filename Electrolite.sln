@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Electrolite", "Electrolite\Electrolite.csproj", "{AF4E39C6-ED98-4FCB-938B-2CDD22DFCBB7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Electrolite.Common", "Electrolite.Common\Electrolite.Common.csproj", "{1F246A22-B107-4CB2-A7AE-AE706A6BC657}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Electrolite.Unix", "Electrolite.Unix\Electrolite.Unix.csproj", "{1C5EE7EA-78BF-4CED-8C62-B9D5A4AE6BAB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{A3F689BA-7ACF-466C-A6E2-B186EFC852D0}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		Electrolite.sln.licenseheader = Electrolite.sln.licenseheader
+		LICENSE = LICENSE
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoElectrolite", "DemoElectrolite\DemoElectrolite.csproj", "{B9678E9B-990C-44D7-B976-42AD59F4C6FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Electrolite.Windows", "Electrolite.Windows\Electrolite.Windows.csproj", "{D15653F0-ED71-4369-8638-B89FBDBF6244}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF4E39C6-ED98-4FCB-938B-2CDD22DFCBB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF4E39C6-ED98-4FCB-938B-2CDD22DFCBB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF4E39C6-ED98-4FCB-938B-2CDD22DFCBB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF4E39C6-ED98-4FCB-938B-2CDD22DFCBB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F246A22-B107-4CB2-A7AE-AE706A6BC657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F246A22-B107-4CB2-A7AE-AE706A6BC657}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F246A22-B107-4CB2-A7AE-AE706A6BC657}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F246A22-B107-4CB2-A7AE-AE706A6BC657}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C5EE7EA-78BF-4CED-8C62-B9D5A4AE6BAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C5EE7EA-78BF-4CED-8C62-B9D5A4AE6BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C5EE7EA-78BF-4CED-8C62-B9D5A4AE6BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C5EE7EA-78BF-4CED-8C62-B9D5A4AE6BAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9678E9B-990C-44D7-B976-42AD59F4C6FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9678E9B-990C-44D7-B976-42AD59F4C6FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9678E9B-990C-44D7-B976-42AD59F4C6FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9678E9B-990C-44D7-B976-42AD59F4C6FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D15653F0-ED71-4369-8638-B89FBDBF6244}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D15653F0-ED71-4369-8638-B89FBDBF6244}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D15653F0-ED71-4369-8638-B89FBDBF6244}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D15653F0-ED71-4369-8638-B89FBDBF6244}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3EC920F8-26A6-4D32-908C-FF4048555C33}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>{D15653F0-ED71-4369-8638-B89FBDBF6244}</ProjectGuid>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyTitle>Electrolite.Windows</AssemblyTitle>
+    <Product>Electrolite.Windows</Product>
+    <Copyright>Copyright © 2019 Integrative Software LLC</Copyright>
+    <CefSharpAnyCpuSupport>true</CefSharpAnyCpuSupport>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.*" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.*" />
+    <PackageReference Include="System.Net.Http" Version="4.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="cef.redist.x64" Version="73.1.13" />
+    <PackageReference Include="cef.redist.x86" Version="73.1.13" />
+    <PackageReference Include="CefSharp.Common" Version="73.1.130" />
+    <PackageReference Include="CefSharp.Wpf" Version="73.1.130" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Electrolite.Common\Electrolite.Common.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <PropertyGroup>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+      None
+    </ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+  </PropertyGroup>
+</Project>
