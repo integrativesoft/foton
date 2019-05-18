@@ -26,7 +26,7 @@ namespace Electrolite.Windows.Main
             var settings = new CefSettings();
             Cef.Initialize(settings);
             //var form = new MainForm();
-            Application.Run(form);
+            //Application.Run(form);
             Application.ApplicationExit += Application_ApplicationExit;
         }
 
