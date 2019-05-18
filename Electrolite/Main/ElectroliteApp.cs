@@ -6,6 +6,8 @@ Author: Pablo Carbonell
 
 using Electrolite.Common.Main;
 using System;
+using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
@@ -37,12 +39,28 @@ namespace Electrolite.Main
 
         private static IElectrolite LoadWindows()
         {
-            return null;
+            var dll = LoadAssembly("Electrolite.Windows.dll");
+            var type = dll.GetType("Electrolite.Windows.Main.Electrolite");
+            return Activator.CreateInstance(type) as IElectrolite;
         }
 
         private static IElectrolite LoadUnix()
         {
             throw new NotImplementedException();
         }
+
+        private static Assembly LoadAssembly(string fileName)
+        {
+            string folder = CurrentFolder();
+            string path = Path.Combine(folder, fileName);
+            return Assembly.LoadFile(path);
+        }
+
+        private static string CurrentFolder()
+        {
+            string fullPath = Assembly.GetAssembly(typeof(ElectroliteApp)).Location;
+            return Path.GetDirectoryName(fullPath);
+        }
+
     }
 }

@@ -4,27 +4,34 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using System.Windows;
-using System.Windows.Controls;
+using CefSharp.WinForms;
+using Electrolite.Common.Main;
+using System.Windows.Forms;
 
 namespace Electrolite.Windows.Main
 {
-    sealed class MainForm : Window
+    sealed class MainForm : Form
     {
-        public MainForm()
-        {
-            InitializeComponent();
-            WindowStartupLocation = WindowStartupLocation.CenterScreen;
-        }
+        readonly ElectroliteOptions _options;
+        readonly ChromiumWebBrowser _browser;
 
-        private void InitializeComponent()
+        public MainForm(ElectroliteOptions options)
         {
-            var panel = new StackPanel();
-            panel.Children.Add(new Button
+            _options = options;
+            Text = _options.Title;
+            MinimizeBox = options.MinButton;
+            MaximizeBox = options.MaxButton;
+            if (!string.IsNullOrEmpty(options.IconPath))
             {
-                Content = "hello"
-            });
-            Content = panel;
+                Icon = new System.Drawing.Icon(options.IconPath);
+            }
+            ResizeBegin += (s, e) => SuspendLayout();
+            ResizeEnd += (s, e) => ResumeLayout(true);
+            _browser = new ChromiumWebBrowser("http://html5test.com")
+            {
+                Dock = DockStyle.Fill
+            };
+            Controls.Add(_browser);
         }
     }
 }
