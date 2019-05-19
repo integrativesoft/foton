@@ -29,13 +29,17 @@ namespace Electrolite.Common.Main
         [DataMember]
         public bool MaxButton { get; set; }
 
+        [DataMember]
+        public bool ShownInTaskbar { get; set; }
+
         public static ElectroliteOptions GetDefaults()
         {
             return new ElectroliteOptions
             {
                 Height = 800,
                 Width = 1000,
-                Title = "Electrolite App"
+                Title = "Electrolite App",
+                ShownInTaskbar = true
             };
         }
     }

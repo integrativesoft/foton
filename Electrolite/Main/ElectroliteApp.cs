@@ -6,26 +6,37 @@ Author: Pablo Carbonell
 
 using Electrolite.Common.Main;
 using System;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 
 namespace Electrolite.Main
 {
     public static class ElectroliteApp
     {
-        public static Task Open(Uri url)
+        public static ISession CreateSession(Uri url)
         {
-            return GetElectrolite().Show(url);
+            return CreateSession(url, ElectroliteOptions.GetDefaults());
         }
 
-        public static Task Open(Uri url, ElectroliteOptions options)
+        public static ISession CreateSession(Uri url, ElectroliteOptions options)
         {
-            return GetElectrolite().Show(url, options);
+            return new Session(url, options);
         }
 
-        private static IElectrolite GetElectrolite()
+        /*public static Task<ISession> Open(Uri url)
+        {
+            return Open(url, ElectroliteOptions.GetDefaults());
+        }
+
+        public static Task<ISession> Open(Uri url, ElectroliteOptions options)
+        {
+            
+        }
+
+        private static void StartListening()
+        {
+
+        }
+
+        private static IBrowserWindow GetElectrolite()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
@@ -37,14 +48,14 @@ namespace Electrolite.Main
             }
         }
 
-        private static IElectrolite LoadWindows()
+        private static IBrowserWindow LoadWindows()
         {
             var dll = LoadAssembly("Electrolite.Windows.dll");
             var type = dll.GetType("Electrolite.Windows.Main.Electrolite");
-            return Activator.CreateInstance(type) as IElectrolite;
+            return Activator.CreateInstance(type) as IBrowserWindow;
         }
 
-        private static IElectrolite LoadUnix()
+        private static IBrowserWindow LoadUnix()
         {
             throw new NotImplementedException();
         }
@@ -60,7 +71,7 @@ namespace Electrolite.Main
         {
             string fullPath = Assembly.GetAssembly(typeof(ElectroliteApp)).Location;
             return Path.GetDirectoryName(fullPath);
-        }
+        }*/
 
     }
 }

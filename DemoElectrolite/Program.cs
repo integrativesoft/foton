@@ -11,9 +11,15 @@ namespace DemoElectrolite
 {
     public static class Program
     {
-        public static void Main(string[] args)
+        const string MyURL = "http://html5test.com";
+
+        public static void Main()
         {
-            ElectroliteApp.Open(new Uri("https://www.google.com"));
+            var url = new Uri(MyURL);
+            using (var session = ElectroliteApp.CreateSession(url))
+            {
+                session.RunBlocking();
+            }
         }
     }
 }

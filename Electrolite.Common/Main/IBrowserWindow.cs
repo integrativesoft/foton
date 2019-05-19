@@ -4,8 +4,8 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
+using Electrolite.Common.Ipc;
 using System;
-using System.Threading.Tasks;
 
 namespace Electrolite.Common.Main
 {
@@ -15,11 +15,9 @@ namespace Electrolite.Common.Main
         UnixAny
     }
 
-    public interface IElectrolite : IDisposable
+    public interface IBrowserWindow : IDisposable
     {
         PlatformType PlatformType { get; }
-        Task Show(Uri url);
-        Task Show(Uri url, ElectroliteOptions options);
-        event EventHandler<ClosingEventArgs> Closing;
+        Order Show(Uri url, ElectroliteOptions options);
     }
 }

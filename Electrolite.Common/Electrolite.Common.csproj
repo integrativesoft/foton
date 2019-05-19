@@ -10,4 +10,9 @@
     <Compile Include="..\SharedAssemblyInfo.cs" Link="Main\SharedAssemblyInfo.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="JKang.IpcServiceFramework.Client" Version="2.2.2" />
+    <PackageReference Include="JKang.IpcServiceFramework.Server" Version="2.2.2" />
+  </ItemGroup>
+
 </Project>
