@@ -10,7 +10,7 @@ namespace Electrolite.Common.Main
 {
     public interface IBrowserHost
     {
-        Order<ElectroliteOptions> GetStartupOptions();
+        Order<StartupParameters> GetStartupOptions();
         Order<ClosingResponse> OnClosing(ClosingReason readon);
         Order NotifyReady();
     }

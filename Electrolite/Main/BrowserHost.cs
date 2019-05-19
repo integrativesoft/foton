@@ -18,9 +18,13 @@ namespace Electrolite.Main
             _parent = parent;
         }
 
-        public Order<ElectroliteOptions> GetStartupOptions()
+        public Order<StartupParameters> GetStartupOptions()
         {
-            return IpcExtensions.WrapOrder(() => _parent.StartupOptions);
+            return IpcExtensions.WrapOrder(() => new StartupParameters
+            {
+                Url = _parent.Url,
+                Options = _parent.StartupOptions
+            });
         }
 
         public Order NotifyReady()

@@ -6,6 +6,7 @@ Author: Pablo Carbonell
 
 using Electrolite.Main;
 using System;
+using System.Threading.Tasks;
 
 namespace DemoElectrolite
 {
@@ -13,12 +14,12 @@ namespace DemoElectrolite
     {
         const string MyURL = "http://html5test.com";
 
-        public static void Main()
+        public static async Task Main()
         {
             var url = new Uri(MyURL);
             using (var session = ElectroliteApp.CreateSession(url))
             {
-                session.RunBlocking();
+                await session.RunAsync();
             }
         }
     }

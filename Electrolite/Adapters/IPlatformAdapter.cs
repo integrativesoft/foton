@@ -4,10 +4,12 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
+using System.Diagnostics;
+
 namespace Electrolite.Adapters
 {
     interface IPlatformAdapter
     {
-        void LaunchBrowser(string endpointName);
+        Process LaunchBrowser(string pipeName);
     }
 }

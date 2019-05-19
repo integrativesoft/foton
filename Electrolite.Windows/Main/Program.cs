@@ -7,6 +7,7 @@ Author: Pablo Carbonell
 using CefSharp;
 using CefSharp.WinForms;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Electrolite.Windows.Main
@@ -17,22 +18,38 @@ namespace Electrolite.Windows.Main
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] args)
+        static async Task Main(string[] args)
+        {
+            InitializeApplicationContext();
+
+            string pipe = GetPipename(args);
+            var form = new MainForm(pipe);
+            await form.Prepare();
+            Application.Run(form);
+        }
+
+        private static void InitializeApplicationContext()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
             Cef.EnableHighDPISupport();
             var settings = new CefSettings();
             Cef.Initialize(settings);
-            //var form = new MainForm();
-            //Application.Run(form);
             Application.ApplicationExit += Application_ApplicationExit;
         }
 
         private static void Application_ApplicationExit(object sender, EventArgs e)
         {
             Cef.Shutdown();
+        }
+
+        internal static string GetPipename(string[] args)
+        {
+            if (args.Length == 0)
+            {
+                throw new ArgumentException("Endpoint not specified.");
+            }
+            return args[0];
         }
     }
 }

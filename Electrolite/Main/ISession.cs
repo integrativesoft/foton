@@ -5,6 +5,7 @@ Author: Pablo Carbonell
 */
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Electrolite.Main
@@ -13,8 +14,6 @@ namespace Electrolite.Main
     {
         event EventHandler<ClosingEventArgs> OnClosing;
         event EventHandler OnReady;
-        void RunBlocking();
-        Task RunBlockingAsync();
-        void Open();
+        Task RunAsync(CancellationToken token = default);
     }
 }
