@@ -16,6 +16,7 @@ namespace DemoElectrolite
 
         public static async Task Main()
         {
+            Console.WriteLine("Starting...");
             var url = new Uri(MyURL);
             using (var session = ElectroliteApp.CreateSession(url))
             {

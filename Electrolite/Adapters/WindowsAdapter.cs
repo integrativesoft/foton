@@ -5,16 +5,24 @@ Author: Pablo Carbonell
 */
 
 using System.Diagnostics;
+using System.IO;
 
 namespace Electrolite.Adapters
 {
     class WindowsAdapter : IPlatformAdapter
     {
+#if DEBUG
+        const string BasePath = @"..\..\..\..\Electrolite.Windows\bin\x64\Debug";
+#else
+        const string BasePath = "Windows";
+#endif
         const string Filename = "Electrolite.Windows.exe";
 
         public Process LaunchBrowser(string pipeName)
         {
-            return PlatformCommon.LaunchBrowser(pipeName, Filename);
+            string path = Path.Combine(BasePath, Filename);
+            PlatformCommon.VerifyFileExists(path);
+            return PlatformCommon.LaunchBrowser(pipeName, path);
         }
     }
 }

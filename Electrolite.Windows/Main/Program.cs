@@ -21,7 +21,7 @@ namespace Electrolite.Windows.Main
         static async Task Main(string[] args)
         {
             InitializeApplicationContext();
-
+            MessageBox.Show("running!");
             string pipe = GetPipename(args);
             var form = new MainForm(pipe);
             await form.Prepare();

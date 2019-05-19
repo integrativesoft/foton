@@ -18,7 +18,8 @@ namespace Electrolite.Main
 
         public static IIpcServiceHost Build(Session session, string endpointName, string pipeName)
         {
-            return new BrowserHostBuilder(session, endpointName, pipeName).Build();
+            var builder = new BrowserHostBuilder(session, endpointName, pipeName);
+            return builder.Build();
         }
 
         private BrowserHostBuilder(Session session, string endpointName, string pipeName)

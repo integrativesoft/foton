@@ -12,7 +12,7 @@ namespace Electrolite.Adapters
 {
     class PlatformCommon
     {
-        public static Process LaunchBrowser(string endpointName, string fileName)
+        public static Process LaunchBrowser(string endpointName, string path)
         {
             var process = new Process
             {
@@ -20,21 +20,36 @@ namespace Electrolite.Adapters
                 {
                     CreateNoWindow = false,
                     UseShellExecute = true,
-                    FileName = GetFilePath(fileName),
+                    FileName = path,
                     Arguments = endpointName
                 },
                 EnableRaisingEvents = true
             };
-            process.Start();
+            try
+            {
+                process.Start();
+            }
+            catch (System.Exception e)
+            {
+                System.Console.Write(e.Message);
+            }
             return process;
         }
 
-        private static string GetFilePath(string fileName)
+        public static string GetAssemblyPath()
         {
             var assembly = Assembly.GetAssembly(typeof(PlatformCommon));
             var path = assembly.CodeBase;
-            var folder = Path.GetDirectoryName(path);
-            return Path.Combine(folder, fileName);
+            return Path.GetDirectoryName(path);
+        }
+
+        public static void VerifyFileExists(string path)
+        {
+            if (!File.Exists(path))
+            {
+                string message = $"File not found: {path}";
+                throw new System.InvalidProgramException(message);
+            }
         }
     }
 }
