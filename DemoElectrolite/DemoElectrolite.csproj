@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -9,5 +9,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Electrolite\Electrolite.csproj" />
   </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="echo xcopy $(SolutionDir)Electrolite.Windows\bin\x64\$(ConfigurationName)\*.* $(TargetDir)*.* /e /y&#xD;&#xA;xcopy $(SolutionDir)Electrolite.Windows\bin\x64\$(ConfigurationName)\*.* $(TargetDir)*.* /e /y" />
+  </Target>
 
 </Project>

@@ -10,10 +10,11 @@
     <PackageReference Include="JKang.IpcServiceFramework.Client" Version="2.2.2" />
     <PackageReference Include="JKang.IpcServiceFramework.Server" Version="2.2.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+    <PackageReference Include="System.Security.Permissions" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Electrolite.Common\Electrolite.Common.csproj" />
   </ItemGroup>
-
+  
 </Project>

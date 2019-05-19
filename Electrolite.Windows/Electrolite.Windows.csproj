@@ -10,6 +10,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
     <Platforms>x64</Platforms>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\SharedAssemblyInfo.cs" Link="Main\SharedAssemblyInfo.cs" />

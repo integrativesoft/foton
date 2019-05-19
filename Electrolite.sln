@@ -18,6 +18,7 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoElectrolite", "DemoElectrolite\DemoElectrolite.csproj", "{B9678E9B-990C-44D7-B976-42AD59F4C6FB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{1F246A22-B107-4CB2-A7AE-AE706A6BC657} = {1F246A22-B107-4CB2-A7AE-AE706A6BC657}
+		{789816C8-2B92-478A-9FE5-5CBE174DDA34} = {789816C8-2B92-478A-9FE5-5CBE174DDA34}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Electrolite.Windows", "Electrolite.Windows\Electrolite.Windows.csproj", "{789816C8-2B92-478A-9FE5-5CBE174DDA34}"
