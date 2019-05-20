@@ -6,7 +6,6 @@ Author: Pablo Carbonell
 
 using Electrolite.Adapters;
 using Electrolite.Common.Main;
-using Electrolite.Tools;
 using JKang.IpcServiceFramework;
 using System;
 using System.Diagnostics;
@@ -18,8 +17,6 @@ namespace Electrolite.Main
 {
     sealed class Session : ISession
     {
-        static readonly Numerator _numerator = new Numerator();
-
         public Uri Url { get; }
         public ElectroliteOptions StartupOptions { get; }
         readonly string _pipeName, _endpointName;
@@ -33,9 +30,10 @@ namespace Electrolite.Main
         {
             Url = url;
             StartupOptions = options;
-            int pipeId = _numerator.Numerate();
-            _pipeName = "ElectrolitePipe" + pipeId.ToString(CultureInfo.InvariantCulture);
-            _endpointName = "ElectroliteEndpoint" + pipeId.ToString(CultureInfo.InvariantCulture);
+            int pipeId = Process.GetCurrentProcess().Id;
+            _pipeName = "ElectrolitePipe_" + pipeId.ToString(CultureInfo.InvariantCulture);
+            Console.WriteLine($"Pipe: {_pipeName}");
+            _endpointName = "ElectroliteEndpoint_" + pipeId.ToString(CultureInfo.InvariantCulture);
             _host = BrowserHostBuilder.Build(this, _endpointName, _pipeName);
             _source = new CancellationTokenSource();
         }
@@ -61,11 +59,16 @@ namespace Electrolite.Main
             {
                 _running = false;
                 _source.Cancel();
-                if (!_browser.HasExited)
+                if (BrowserIsOpen())
                 {
                     _browser.Close();
                 }
             }
+        }
+
+        private bool BrowserIsOpen()
+        {
+            return _browser != null && !_browser.HasExited;
         }
 
         public void NotifyReady()
@@ -83,26 +86,32 @@ namespace Electrolite.Main
         public async Task RunAsync(CancellationToken token = default)
         {
             _running = true;
+            var localToken = AggregateTokens(token);
+            LaunchBrowser();
+            await _host.RunAsync(localToken);
+            _running = false;
+        }
+
+        private CancellationToken AggregateTokens(CancellationToken token)
+        {
             var localToken = _source.Token;
             if (token != CancellationToken.None)
             {
                 token.Register(() => Stop());
             }
-            _browser = LaunchBrowserProcess();
+            return localToken;
+        }
+
+        private void LaunchBrowser()
+        {
+            var adapter = PlatformAdapterFactory.CreateAdapter();
+            _browser = adapter.LaunchBrowser(_pipeName);
             _browser.Exited += Browser_Exited;
-            await _host.RunAsync(localToken);
-            _running = false;
         }
 
         private void Browser_Exited(object sender, EventArgs e)
         {
             Stop();
-        }
-
-        private Process LaunchBrowserProcess()
-        {
-            var adapter = PlatformAdapterFactory.CreateAdapter();
-            return adapter.LaunchBrowser(_pipeName);
         }
     }
 }

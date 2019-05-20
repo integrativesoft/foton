@@ -10,6 +10,7 @@ namespace Electrolite.Common.Main
 {
     public interface IBrowserHost
     {
+        string Ping();
         Order<StartupParameters> GetStartupOptions();
         Order<ClosingResponse> OnClosing(ClosingReason readon);
         Order NotifyReady();

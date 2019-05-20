@@ -19,6 +19,7 @@
     <PackageReference Include="CefSharp.WinForms" Version="73.1.130" />
     <PackageReference Include="JKang.IpcServiceFramework.Client" Version="2.2.2" />
     <PackageReference Include="JKang.IpcServiceFramework.Server" Version="2.2.2" />
+    <PackageReference Include="Nito.AsyncEx" Version="5.0.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />

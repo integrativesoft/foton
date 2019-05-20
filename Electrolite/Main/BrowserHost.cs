@@ -36,5 +36,7 @@ namespace Electrolite.Main
         {
             return IpcExtensions.WrapOrder(() => _parent.NotifyClosing());
         }
+
+        public string Ping() => "Pong";
     }
 }

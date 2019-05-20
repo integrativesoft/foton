@@ -7,7 +7,6 @@ Author: Pablo Carbonell
 using CefSharp;
 using CefSharp.WinForms;
 using System;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Electrolite.Windows.Main
@@ -18,13 +17,11 @@ namespace Electrolite.Windows.Main
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
             InitializeApplicationContext();
-            MessageBox.Show("running!");
             string pipe = GetPipename(args);
             var form = new MainForm(pipe);
-            await form.Prepare();
             Application.Run(form);
         }
 

@@ -12,10 +12,13 @@ namespace Electrolite.Common.Main
     public class ElectroliteOptions
     {
         [DataMember]
-        public int Width { get; set; }
+        public ElectroliteSize Size { get; set; }
 
         [DataMember]
-        public int Height { get; set; }
+        public ElectroliteSize MinSize { get; set; }
+
+        [DataMember]
+        public ElectroliteSize MaxSize { get; set; }
 
         [DataMember]
         public string Title { get; set; }
@@ -36,8 +39,6 @@ namespace Electrolite.Common.Main
         {
             return new ElectroliteOptions
             {
-                Height = 800,
-                Width = 1000,
                 Title = "Electrolite App",
                 ShownInTaskbar = true
             };

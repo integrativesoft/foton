@@ -47,11 +47,11 @@ namespace Electrolite.Main
                         {
                             options.ThreadCount = 2;
                         })
-                        .AddService(CreateBrowserHost);
+                        .AddService<IBrowserHost, BrowserHost>(CreateBrowserHost);
                 });
         }
 
-        private IBrowserHost CreateBrowserHost(IServiceProvider arg)
+        private BrowserHost CreateBrowserHost(IServiceProvider arg)
         {
             return new BrowserHost(_session);
         }
