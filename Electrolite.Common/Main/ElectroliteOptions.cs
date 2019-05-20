@@ -24,9 +24,6 @@ namespace Electrolite.Common.Main
         public string Title { get; set; }
 
         [DataMember]
-        public string IconPath { get; set; }
-
-        [DataMember]
         public bool MinButton { get; set; }
 
         [DataMember]
@@ -35,12 +32,19 @@ namespace Electrolite.Common.Main
         [DataMember]
         public bool ShownInTaskbar { get; set; }
 
+        [DataMember]
+        public bool ShowIcon { get; set; }
+
+        [DataMember]
+        public string IconPath { get; set; }
+
         public static ElectroliteOptions GetDefaults()
         {
             return new ElectroliteOptions
             {
                 Title = "Electrolite App",
-                ShownInTaskbar = true
+                ShownInTaskbar = true,
+                ShowIcon = true
             };
         }
     }

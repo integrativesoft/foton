@@ -5,7 +5,6 @@ Author: Pablo Carbonell
 */
 
 using Electrolite.Common.Ipc;
-using System;
 
 namespace Electrolite.Common.Main
 {
@@ -15,9 +14,9 @@ namespace Electrolite.Common.Main
         UnixAny
     }
 
-    public interface IBrowserWindow : IDisposable
+    public interface IBrowserWindow
     {
         PlatformType PlatformType { get; }
-        Order Show(Uri url, ElectroliteOptions options);
+        Order ModifyOptions(ElectroliteOptions options);
     }
 }

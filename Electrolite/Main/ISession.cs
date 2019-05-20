@@ -12,7 +12,7 @@ namespace Electrolite.Main
 {
     public interface ISession : IDisposable
     {
-        event EventHandler<ClosingEventArgs> OnClosing;
+        event EventHandler OnClosing;
         event EventHandler OnReady;
         Task RunAsync(CancellationToken token = default);
     }

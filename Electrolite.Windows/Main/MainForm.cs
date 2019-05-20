@@ -8,7 +8,7 @@ using CefSharp.WinForms;
 using Electrolite.Common.Ipc;
 using Electrolite.Common.Main;
 using JKang.IpcServiceFramework;
-using Nito.AsyncEx;
+using System;
 using System.Windows.Forms;
 
 namespace Electrolite.Windows.Main
@@ -17,22 +17,43 @@ namespace Electrolite.Windows.Main
     {
         readonly IpcServiceClient<IBrowserHost> _client;
         readonly ChromiumWebBrowser _browser;
-        StartupParameters _startup;
+        readonly SettingsApplier _painter;
+        readonly StartupParameters _startup;
+        readonly Transparenter _transparenter;
 
         public MainForm(string pipeName)
         {
+            _transparenter = new Transparenter(this);
             _client = BuildClient(pipeName);
-            ResizeBegin += (s, e) => SuspendLayout();
-            ResizeEnd += (s, e) => ResumeLayout(true);
-            AsyncContext.Run(async () => {
-                _startup = await _client.OrderAsync(x => x.GetStartupOptions());
-            });
-            ApplySettings(_startup.Options);
+            _painter = new SettingsApplier(this);
+            _startup = _client.Order(x => x.GetStartupOptions());
+            ApplySetttings(_startup.Options);
+            _painter.CenterForm();
             _browser = new ChromiumWebBrowser(_startup.Url.AbsoluteUri)
             {
-                Dock = DockStyle.Fill
+                Dock = DockStyle.Fill,
             };
+            _browser.LoadingStateChanged += Browser_LoadingStateChanged;
             Controls.Add(_browser);
+            ResizeBegin += (s, e) => SuspendLayout();
+            ResizeEnd += (s, e) => ResumeLayout(true);
+            FormClosed += MainForm_FormClosed;
+            _transparenter.MakeTransparent();
+            new BrowserServer(this).RunInBackground();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _client.Order(x => x.NotifyClosing());
+            Shutdown();
+        }
+
+        public static void Shutdown()
+        {
+            CefSharp.Cef.Shutdown();
+            Application.ExitThread();
+            Environment.Exit(0);
+            Application.Exit();
         }
 
         private static IpcServiceClient<IBrowserHost> BuildClient(string pipeName)
@@ -42,19 +63,19 @@ namespace Electrolite.Windows.Main
                 .Build();
         }
 
-        private void ApplySettings(ElectroliteOptions options)
+        private void Browser_LoadingStateChanged(object sender, CefSharp.LoadingStateChangedEventArgs e)
         {
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = options.Title;
-            MinimizeBox = options.MinButton;
-            MaximizeBox = options.MaxButton;
-            Height = options.Height;
-            Width = options.Width;
-            ShowInTaskbar = options.ShownInTaskbar;
-            if (!string.IsNullOrEmpty(options.IconPath))
+            if (!e.IsLoading)
             {
-                Icon = new System.Drawing.Icon(options.IconPath);
+                _client.Order(x => x.NotifyReady());
+                _transparenter.MakeOpaque();
             }
         }
+
+        public void ApplySetttings(ElectroliteOptions options)
+        {
+            _painter.Apply(options);
+        }
+
     }
 }

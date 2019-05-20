@@ -32,7 +32,7 @@ namespace Electrolite.Main
             return IpcExtensions.WrapOrder(() => _parent.NotifyReady());
         }
 
-        public Order<ClosingResponse> OnClosing(ClosingReason readon)
+        public Order NotifyClosing()
         {
             return IpcExtensions.WrapOrder(() => _parent.NotifyClosing());
         }

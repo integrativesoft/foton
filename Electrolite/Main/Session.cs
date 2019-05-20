@@ -38,7 +38,7 @@ namespace Electrolite.Main
             _source = new CancellationTokenSource();
         }
 
-        public event EventHandler<ClosingEventArgs> OnClosing;
+        public event EventHandler OnClosing;
         public event EventHandler OnReady;
 
         bool _disposed;
@@ -76,11 +76,9 @@ namespace Electrolite.Main
             OnReady?.Invoke(this, new EventArgs());
         }
 
-        public ClosingResponse NotifyClosing()
+        public void NotifyClosing()
         {
-            var args = new ClosingEventArgs();
-            OnClosing?.Invoke(this, args);
-            return args.Response;
+            OnClosing?.Invoke(this, new EventArgs());
         }
 
         public async Task RunAsync(CancellationToken token = default)

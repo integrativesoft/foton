@@ -5,6 +5,7 @@ Author: Pablo Carbonell
 */
 
 using JKang.IpcServiceFramework;
+using Nito.AsyncEx;
 using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace Electrolite.Common.Ipc
 {
     public static class IpcExtensions
     {
+        #region Server extensions
+
         public static async Task<Order> WrapOrderAsync(Func<Task> action)
         {
             try
@@ -95,6 +98,10 @@ namespace Electrolite.Common.Ipc
             }
         }
 
+        #endregion
+
+        #region Client extensions for async calls
+
         public static async Task OrderAsync<TInterface>(
             this IpcServiceClient<TInterface> client,
             Expression<Func<TInterface, Order>> action) where TInterface : class
@@ -120,5 +127,33 @@ namespace Electrolite.Common.Ipc
                 throw new InvalidOperationException(result.UserErrorMessage);
             }
         }
+
+        #endregion
+
+        #region Client context wrappers
+
+        public static void Order<TInterface>(
+            this IpcServiceClient<TInterface> client,
+            Expression<Func<TInterface, Order>> action) where TInterface : class
+        {
+            AsyncContext.Run(async () =>
+            {
+                await client.OrderAsync(action);
+            });
+        }
+
+        public static TResult Order<TInterface, TResult>(
+            this IpcServiceClient<TInterface> client,
+            Expression<Func<TInterface, Order<TResult>>> action) where TInterface : class
+        {
+            TResult result = default;
+            AsyncContext.Run(async () =>
+            {
+                result = await client.OrderAsync(action);
+            });
+            return result;
+        }
+
+        #endregion
     }
 }

@@ -12,7 +12,7 @@ namespace Electrolite.Common.Main
     {
         string Ping();
         Order<StartupParameters> GetStartupOptions();
-        Order<ClosingResponse> OnClosing(ClosingReason readon);
+        Order NotifyClosing();
         Order NotifyReady();
     }
 }
