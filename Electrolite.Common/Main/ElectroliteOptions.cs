@@ -15,37 +15,27 @@ namespace Electrolite.Common.Main
         public ElectroliteSize Size { get; set; }
 
         [DataMember]
-        public ElectroliteSize MinSize { get; set; }
+        public ElectroliteSize MinSize { get; set; } = new ElectroliteSize(400, 300);
 
         [DataMember]
         public ElectroliteSize MaxSize { get; set; }
 
         [DataMember]
-        public string Title { get; set; }
+        public string Title { get; set; } = "Electrolite";
 
         [DataMember]
-        public bool MinButton { get; set; }
+        public bool MinButton { get; set; } = true;
 
         [DataMember]
-        public bool MaxButton { get; set; }
+        public bool MaxButton { get; set; } = true;
 
         [DataMember]
-        public bool ShownInTaskbar { get; set; }
+        public bool ShownInTaskbar { get; set; } = true;
 
         [DataMember]
-        public bool ShowIcon { get; set; }
+        public bool ShowIcon { get; set; } = true;
 
         [DataMember]
         public string IconPath { get; set; }
-
-        public static ElectroliteOptions GetDefaults()
-        {
-            return new ElectroliteOptions
-            {
-                Title = "Electrolite App",
-                ShownInTaskbar = true,
-                ShowIcon = true
-            };
-        }
     }
 }

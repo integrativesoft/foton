@@ -16,5 +16,15 @@ namespace Electrolite.Common.Main
 
         [DataMember]
         public int Height { get; set; }
+
+        public ElectroliteSize()
+        {
+        }
+
+        public ElectroliteSize(int width, int height)
+        {
+            Width = width;
+            Height = height;
+        }
     }
 }

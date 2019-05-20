@@ -12,7 +12,7 @@ namespace Electrolite.Main
     public static class ElectroliteApp
     {
         public static ISession CreateSession(Uri url)
-            => CreateSession(url, ElectroliteOptions.GetDefaults());
+            => CreateSession(url, new ElectroliteOptions());
 
         public static ISession CreateSession(Uri url, ElectroliteOptions options)
             => new Session(url, options);
