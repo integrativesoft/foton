@@ -52,22 +52,5 @@ namespace Electrolite.Adapters
                 throw new System.InvalidProgramException(message);
             }
         }
-
-        public static string NameHostEndpoint(int id)
-            => NameElement("ElectroliteEndpoint_{0}", id);
-
-        public static string NameBrowserEndpoint(int id)
-            => NameElement("ElectroliteEndpoint_{0}", id);
-
-        public static string NameBrowserPipe(int id)
-            => NameElement("ElectroliteClient_{0}", id);
-
-        public static string NameHostPipe(int id)
-            => NameElement("ElectroliteServer_{0}", id);
-
-        private static string NameElement(string template, int id)
-        {
-            return string.Format(template, id.ToString(CultureInfo.InvariantCulture));
-        }
     }
 }

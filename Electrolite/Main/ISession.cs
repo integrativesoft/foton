@@ -4,6 +4,7 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
+using Electrolite.Common.Main;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,6 +15,11 @@ namespace Electrolite.Main
     {
         event EventHandler OnClosing;
         event EventHandler OnReady;
+        void Run();
         Task RunAsync(CancellationToken token = default);
+        void RunBackground(CancellationToken token = default);
+        Task ModifySettings(ElectroliteOptions options);
+        int BrowserProcessId { get; }
+        Task WaitForShutdown();
     }
 }

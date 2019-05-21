@@ -15,18 +15,24 @@ namespace Electrolite.Windows.Main
 {
     sealed class MainForm : Form
     {
-        readonly IpcServiceClient<IBrowserHost> _client;
+        readonly IpcPipeDuplex<IBrowserWindow, IBrowserHost> _duplex;
         readonly ChromiumWebBrowser _browser;
         readonly SettingsApplier _painter;
         readonly StartupParameters _startup;
         readonly Transparenter _transparenter;
 
-        public MainForm(string pipeName)
+        public MainForm(int parentId)
         {
             _transparenter = new Transparenter(this);
-            _client = BuildClient(pipeName);
+            _duplex = new IpcPipeDuplex<IBrowserWindow, IBrowserHost>(new IpcDuplexParameters<IBrowserWindow>
+            {
+                ClientPipe = ElectroliteCommon.ElectroliteHost(parentId),
+                ServerEndpoint = ElectroliteCommon.ElectroliteBrowserEndpoint(parentId),
+                ServerPipe = ElectroliteCommon.ElectroliteBrowser(parentId),
+                ServerFactory = (service => new BrowserHost(this))
+            });
             _painter = new SettingsApplier(this);
-            _startup = _client.Order(x => x.GetStartupOptions());
+            _startup = _duplex.Client.Order(x => x.GetStartupOptions());
             ApplySetttings(_startup.Options);
             _painter.CenterForm();
             _browser = new ChromiumWebBrowser(_startup.Url.AbsoluteUri)
@@ -39,12 +45,19 @@ namespace Electrolite.Windows.Main
             ResizeEnd += (s, e) => ResumeLayout(true);
             FormClosed += MainForm_FormClosed;
             _transparenter.MakeTransparent();
-            new BrowserServer(this).RunInBackground();
+            _duplex.RunBackground();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _client.Order(x => x.NotifyClosing());
+            Hide();
+            try
+            {
+                _duplex.Client.Order(x => x.NotifyClosing());
+            }
+            catch
+            {
+            }
             Shutdown();
         }
 
@@ -67,7 +80,7 @@ namespace Electrolite.Windows.Main
         {
             if (!e.IsLoading)
             {
-                _client.Order(x => x.NotifyReady());
+                _duplex.Client.Order(x => x.NotifyReady());
                 _transparenter.MakeOpaque();
             }
         }

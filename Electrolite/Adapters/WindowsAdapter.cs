@@ -18,11 +18,11 @@ namespace Electrolite.Adapters
 #endif
         const string Filename = "Electrolite.Windows.exe";
 
-        public Process LaunchBrowser(string pipeName)
+        public Process LaunchBrowser(int parentProcessId)
         {
             string path = Path.Combine(BasePath, Filename);
             PlatformCommon.VerifyFileExists(path);
-            return PlatformCommon.LaunchBrowser(pipeName, path);
+            return PlatformCommon.LaunchBrowser(parentProcessId.ToString(), path);
         }
     }
 }

@@ -20,8 +20,8 @@ namespace Electrolite.Windows.Main
         static void Main(string[] args)
         {
             InitializeApplicationContext();
-            string pipe = GetPipename(args);
-            var form = new MainForm(pipe);
+            int parentId = GetParentId(args);
+            var form = new MainForm(parentId);
             Application.Run(form);
         }
 
@@ -40,13 +40,13 @@ namespace Electrolite.Windows.Main
             Cef.Shutdown();
         }
 
-        internal static string GetPipename(string[] args)
+        internal static int GetParentId(string[] args)
         {
-            if (args.Length == 0)
+            if (args.Length >= 1 && int.TryParse(args[0], out int parentId))
             {
-                throw new ArgumentException("Endpoint not specified.");
+                return parentId;
             }
-            return args[0];
+            throw new ArgumentException("Endpoint not specified or invalid.");
         }
     }
 }

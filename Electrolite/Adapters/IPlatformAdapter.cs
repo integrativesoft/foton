@@ -10,6 +10,6 @@ namespace Electrolite.Adapters
 {
     interface IPlatformAdapter
     {
-        Process LaunchBrowser(string pipeName);
+        Process LaunchBrowser(int parentProcessId);
     }
 }

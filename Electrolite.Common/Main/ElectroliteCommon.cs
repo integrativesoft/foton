@@ -29,5 +29,22 @@ namespace Electrolite.Common.Main
                 return new Icon(stream);
             }
         }
+
+        public static string ElectroliteHostEndpoint(int id)
+            => NameElement("ElectroliteHostEndpoint_{0}", id);
+
+        public static string ElectroliteBrowserEndpoint(int id)
+            => NameElement("ElectroliteEndpoint_{0}", id);
+
+        public static string ElectroliteBrowser(int id)
+            => NameElement("ElectroliteBrowser_{0}", id);
+
+        public static string ElectroliteHost(int id)
+            => NameElement("ElectroliteHost_{0}", id);
+
+        private static string NameElement(string template, int id)
+        {
+            return string.Format(template, id.ToString(CultureInfo.InvariantCulture));
+        }
     }
 }

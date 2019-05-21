@@ -6,6 +6,7 @@ Author: Pablo Carbonell
 
 using JKang.IpcServiceFramework;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,6 +20,8 @@ namespace Electrolite.Common.Ipc
         public IIpcServiceHost Server { get; }
         public IpcServiceClient<TClient> Client { get; }
 
+        public event EventHandler<BackgroundErrorEventArgs> BackgroundError;
+
         public IpcPipeDuplex(IpcDuplexParameters<TServer> parameters)
         {
             _parameters = parameters;
@@ -26,14 +29,32 @@ namespace Electrolite.Common.Ipc
             Client = BuildClient();
         }
 
-        public async Task RunAsync()
-        {
-            await Server.RunAsync();
-        }
-
-        public async Task RunAsync(CancellationToken token)
+        public async Task RunAsync(CancellationToken token = default)
         {
             await Server.RunAsync(token);
+        }
+
+        public void RunBackground(CancellationToken token = default)
+        {
+            Task.Run(async () =>
+            {
+                await RunCatchAsync(token);
+            });
+        }
+
+        private async Task RunCatchAsync(CancellationToken token)
+        {
+            try
+            {
+                await Server.RunAsync(token);
+            }
+            catch (Exception e)
+            {
+                BackgroundError?.Invoke(this, new BackgroundErrorEventArgs
+                {
+                    Exception = e
+                });
+            }
         }
 
         private IIpcServiceHost BuildHost()
