@@ -5,11 +5,10 @@ Author: Pablo Carbonell
 */
 
 using Electrolite.Adapters;
+using Electrolite.Common.Ipc;
 using Electrolite.Common.Main;
-using JKang.IpcServiceFramework;
 using System;
 using System.Diagnostics;
-using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,9 +18,9 @@ namespace Electrolite.Main
     {
         public Uri Url { get; }
         public ElectroliteOptions StartupOptions { get; }
-        readonly string _pipeName, _endpointName;
-        readonly IIpcServiceHost _host;
+        readonly IpcPipeDuplex<IBrowserHost, IBrowserWindow> _duplex;
         readonly CancellationTokenSource _source;
+        readonly string _serverPipe;
 
         bool _running;
         Process _browser;
@@ -30,11 +29,15 @@ namespace Electrolite.Main
         {
             Url = url;
             StartupOptions = options;
-            int pipeId = Process.GetCurrentProcess().Id;
-            _pipeName = "ElectrolitePipe_" + pipeId.ToString(CultureInfo.InvariantCulture);
-            Console.WriteLine($"Pipe: {_pipeName}");
-            _endpointName = "ElectroliteEndpoint_" + pipeId.ToString(CultureInfo.InvariantCulture);
-            _host = BrowserHostBuilder.Build(this, _endpointName, _pipeName);
+            int processId = Process.GetCurrentProcess().Id;
+            _serverPipe = PlatformCommon.NameHostPipe(processId);
+            _duplex = new IpcPipeDuplex<IBrowserHost, IBrowserWindow>(new IpcDuplexParameters<IBrowserHost>
+            {
+                ClientPipe = PlatformCommon.NameBrowserPipe(processId),
+                ServerEndpoint = PlatformCommon.NameHostEndpoint(processId),
+                ServerPipe = _serverPipe,
+                ServerFactory = ((provider) => new BrowserHost(this))
+            });
             _source = new CancellationTokenSource();
         }
 
@@ -86,7 +89,7 @@ namespace Electrolite.Main
             _running = true;
             var localToken = AggregateTokens(token);
             LaunchBrowser();
-            await _host.RunAsync(localToken);
+            await _duplex.RunAsync(localToken);
             _running = false;
         }
 
@@ -103,7 +106,7 @@ namespace Electrolite.Main
         private void LaunchBrowser()
         {
             var adapter = PlatformAdapterFactory.CreateAdapter();
-            _browser = adapter.LaunchBrowser(_pipeName);
+            _browser = adapter.LaunchBrowser(_serverPipe);
             _browser.Exited += Browser_Exited;
         }
 
