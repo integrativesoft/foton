@@ -4,6 +4,7 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
+using System;
 using System.Diagnostics;
 using System.IO;
 
@@ -18,11 +19,22 @@ namespace Electrolite.Adapters
 #endif
         const string Filename = "Electrolite.Windows.exe";
 
-        public Process LaunchBrowser(int parentProcessId)
+        public Process LaunchBrowser(int parentProcessId, string splashPath)
         {
             string path = Path.Combine(BasePath, Filename);
             PlatformCommon.VerifyFileExists(path);
-            return PlatformCommon.LaunchBrowser(parentProcessId.ToString(), path);
+            var args = BuildArgs(parentProcessId, splashPath);
+            return PlatformCommon.LaunchBrowser(args, path);
+        }
+
+        private static string BuildArgs(int parentProcessId, string splashPath)
+        {
+            string args = parentProcessId.ToString();
+            if (!string.IsNullOrEmpty(splashPath))
+            {
+                args = args + " " + Uri.EscapeDataString(splashPath);
+            }
+            return args;
         }
     }
 }

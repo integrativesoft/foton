@@ -15,6 +15,7 @@ namespace Electrolite.Main
     {
         event EventHandler OnClosing;
         event EventHandler OnReady;
+        string SplashImagePath { get; set; }
         void Run();
         Task RunAsync(CancellationToken token = default);
         void RunBackground(CancellationToken token = default);

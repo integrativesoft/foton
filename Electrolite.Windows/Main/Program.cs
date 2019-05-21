@@ -6,7 +6,10 @@ Author: Pablo Carbonell
 
 using CefSharp;
 using CefSharp.WinForms;
+using Electrolite.Common.Ipc;
+using Electrolite.Common.Main;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Electrolite.Windows.Main
@@ -19,20 +22,24 @@ namespace Electrolite.Windows.Main
         [STAThread]
         static void Main(string[] args)
         {
-            InitializeApplicationContext();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.ApplicationExit += Application_ApplicationExit;
+
             int parentId = GetParentId(args);
-            var form = new MainForm(parentId);
+            var duplex = CreateDuplex(parentId);
+            var splash = ShowSplash(args);
+
+            InitializeCef();
+            var form = new MainForm(duplex, splash);
             Application.Run(form);
         }
 
-        private static void InitializeApplicationContext()
+        private static void InitializeCef()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
             Cef.EnableHighDPISupport();
             var settings = new CefSettings();
             Cef.Initialize(settings);
-            Application.ApplicationExit += Application_ApplicationExit;
         }
 
         private static void Application_ApplicationExit(object sender, EventArgs e)
@@ -47,6 +54,31 @@ namespace Electrolite.Windows.Main
                 return parentId;
             }
             throw new ArgumentException("Endpoint not specified or invalid.");
+        }
+
+        private static IpcPipeDuplex<IBrowserWindow, Common.Main.IBrowserHost> CreateDuplex(int parentId)
+        {
+            return new IpcPipeDuplex<IBrowserWindow, Common.Main.IBrowserHost>(new IpcDuplexParameters<IBrowserWindow>
+            {
+                ClientPipe = ElectroliteCommon.ElectroliteHost(parentId),
+                ServerEndpoint = ElectroliteCommon.ElectroliteBrowserEndpoint(parentId),
+                ServerPipe = ElectroliteCommon.ElectroliteBrowser(parentId),
+                ServerFactory = (service => new BrowserHost())
+            });
+        }
+
+        private static Form ShowSplash(string[] args)
+        {
+            if (args.Length < 2)
+            {
+                return null;
+            }
+            string path = Uri.UnescapeDataString(args[1]);
+            var image = Image.FromFile(path);
+            var splash = new SplashForm(image);
+            splash.Show();
+            splash.BringToFront();
+            return splash;
         }
     }
 }

@@ -11,12 +11,7 @@ namespace Electrolite.Windows.Main
 {
     class BrowserHost : IBrowserWindow
     {
-        readonly MainForm _form;
-
-        public BrowserHost(MainForm form)
-        {
-            _form = form;
-        }
+        public MainForm Form { get; set; }
 
         public PlatformType PlatformType => PlatformType.WindowsAny;
 
@@ -30,13 +25,13 @@ namespace Electrolite.Windows.Main
 
         private void ModifyOptionsSafe(ElectroliteOptions options)
         {
-            if (_form.InvokeRequired)
+            if (Form.InvokeRequired)
             {
-                _form.Invoke(new ModifyOptionsDelegate(ModifyOptionsSafe), new object[] { options });
+                Form.Invoke(new ModifyOptionsDelegate(ModifyOptionsSafe), new object[] { options });
             }
             else
             {
-                _form.ApplySetttings(options);
+                Form.ApplySetttings(options);
             }
         }
 

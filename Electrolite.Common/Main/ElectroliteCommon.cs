@@ -6,6 +6,7 @@ Author: Pablo Carbonell
 
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Reflection;
 
 namespace Electrolite.Common.Main
@@ -30,6 +31,14 @@ namespace Electrolite.Common.Main
             }
         }
 
+        public static Image LoadImage(this Assembly assembly, string resourceName)
+        {
+            using (var stream = assembly.GetManifestResourceStream(resourceName))
+            {
+                return Image.FromStream(stream);
+            }
+        }
+
         public static string ElectroliteHostEndpoint(int id)
             => NameElement("ElectroliteHostEndpoint_{0}", id);
 
@@ -45,6 +54,14 @@ namespace Electrolite.Common.Main
         private static string NameElement(string template, int id)
         {
             return string.Format(template, id.ToString(CultureInfo.InvariantCulture));
+        }
+
+        public static Image ImageFromBytes(byte[] byteArrayIn)
+        {
+            using (var ms = new MemoryStream(byteArrayIn))
+            {
+                return Image.FromStream(ms);
+            }
         }
     }
 }

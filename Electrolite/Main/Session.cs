@@ -140,12 +140,13 @@ namespace Electrolite.Main
         {
             var adapter = PlatformAdapterFactory.CreateAdapter();
             int id = Process.GetCurrentProcess().Id;
-            _browser = adapter.LaunchBrowser(id);
+            _browser = adapter.LaunchBrowser(id, SplashImagePath);
             _browser.Exited += Browser_Exited;
             BrowserProcessId = _browser.Id;
         }
 
         public int BrowserProcessId { get; private set; }
+        public string SplashImagePath { get; set; }
 
         private void Browser_Exited(object sender, EventArgs e)
         {
