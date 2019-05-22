@@ -11,9 +11,9 @@ namespace Electrolite.Main
 {
     sealed class BrowserHost : IBrowserHost
     {
-        readonly Session _parent;
+        readonly IpcSession _parent;
 
-        public BrowserHost(Session parent)
+        public BrowserHost(IpcSession parent)
         {
             _parent = parent;
         }

@@ -28,12 +28,16 @@ namespace DemoElectrolite
             using (var session = ElectroliteApp.CreateSession(url, options))
             {
                 session.SplashImagePath = GetImagePath("SampleSplash.jpg");
-                session.RunBackground();
                 session.OnReady += ((sender, args) =>
                 {
                     watch.Stop();
                     Console.WriteLine($"Elapsed: {watch.Elapsed}");
                 });
+                session.BackgroundError += ((sender, args) =>
+                {
+                    Console.WriteLine(args.Exception.ToString());
+                });
+                session.RunBackground();
                 await session.WaitForShutdown();
             }
         }

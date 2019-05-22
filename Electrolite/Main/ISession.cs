@@ -4,6 +4,7 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
+using Electrolite.Common.Ipc;
 using Electrolite.Common.Main;
 using System;
 using System.Threading;
@@ -15,6 +16,7 @@ namespace Electrolite.Main
     {
         event EventHandler OnClosing;
         event EventHandler OnReady;
+        event EventHandler<BackgroundErrorEventArgs> BackgroundError;
         string SplashImagePath { get; set; }
         void Run();
         Task RunAsync(CancellationToken token = default);

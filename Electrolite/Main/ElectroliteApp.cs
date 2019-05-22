@@ -4,6 +4,7 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
+using Electrolite.Adapters;
 using Electrolite.Common.Main;
 using System;
 
@@ -15,6 +16,9 @@ namespace Electrolite.Main
             => CreateSession(url, new ElectroliteOptions());
 
         public static ISession CreateSession(Uri url, ElectroliteOptions options)
-            => new Session(url, options);
+        {
+            var adapter = PlatformAdapterFactory.CreateAdapter();
+            return adapter.CreateSession(url, options);
+        }
     }
 }

@@ -15,22 +15,22 @@ using System.Threading.Tasks;
 
 namespace Electrolite.Main
 {
-    sealed class Session : ISession
+    sealed class IpcSession : ISession
     {
         public Uri Url { get; }
         public ElectroliteOptions StartupOptions { get; }
+        readonly IPlatformAdapter _adapter;
         readonly IpcPipeDuplex<IBrowserHost, IBrowserWindow> _duplex;
         readonly CancellationTokenSource _source;
-
-        public EventHandler<BackgroundErrorEventArgs> BackgroundError;
 
         bool _running;
         Process _browser;
         TaskCompletionSource<bool> _startWaiter;
         TaskCompletionSource<bool> _stopWaiter;
 
-        public Session(Uri url, ElectroliteOptions options)
+        public IpcSession(IPlatformAdapter adapter, Uri url, ElectroliteOptions options)
         {
+            _adapter = adapter;
             Url = url;
             StartupOptions = options;
             int processId = Process.GetCurrentProcess().Id;
@@ -47,6 +47,7 @@ namespace Electrolite.Main
 
         public event EventHandler OnClosing;
         public event EventHandler OnReady;
+        public event EventHandler<BackgroundErrorEventArgs> BackgroundError;
 
         bool _disposed;
 
@@ -137,10 +138,9 @@ namespace Electrolite.Main
         }
 
         private void LaunchBrowser()
-        {
-            var adapter = PlatformAdapterFactory.CreateAdapter();
+        {            
             int id = Process.GetCurrentProcess().Id;
-            _browser = adapter.LaunchBrowser(id, SplashImagePath);
+            _browser = _adapter.LaunchBrowser(id, SplashImagePath);
             _browser.Exited += Browser_Exited;
             BrowserProcessId = _browser.Id;
         }

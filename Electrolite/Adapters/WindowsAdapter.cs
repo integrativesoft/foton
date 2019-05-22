@@ -7,6 +7,8 @@ Author: Pablo Carbonell
 using System;
 using System.Diagnostics;
 using System.IO;
+using Electrolite.Common.Main;
+using Electrolite.Main;
 
 namespace Electrolite.Adapters
 {
@@ -35,6 +37,11 @@ namespace Electrolite.Adapters
                 args = args + " " + Uri.EscapeDataString(splashPath);
             }
             return args;
+        }
+
+        public ISession CreateSession(Uri url, ElectroliteOptions options)
+        {
+            return new IpcSession(this, url, options);
         }
     }
 }
