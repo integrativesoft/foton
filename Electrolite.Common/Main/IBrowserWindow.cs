@@ -4,9 +4,9 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using Electrolite.Common.Ipc;
+using Electrolite.Core.Ipc;
 
-namespace Electrolite.Common.Main
+namespace Electrolite.Core.Main
 {
     public enum PlatformType
     {

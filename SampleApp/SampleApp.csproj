@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Electrolite\Electrolite.csproj" />
+    <ProjectReference Include="..\Electrolite.Core\Electrolite.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,10 +6,10 @@ Author: Pablo Carbonell
 
 using System.Runtime.Serialization;
 
-namespace Electrolite.Common.Main
+namespace Electrolite.Core.Main
 {
     [DataContract]
-    public class ElectroliteOptions
+    public class ElectroliteOptions : IElectroliteOptions
     {
         [DataMember]
         public ElectroliteSize Size { get; set; }

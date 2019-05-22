@@ -4,22 +4,22 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using Electrolite.Adapters;
-using Electrolite.Common.Ipc;
-using Electrolite.Common.Main;
+using Electrolite.Core.Ipc;
+using Electrolite.Core.Main;
+using Electrolite.Main;
 using Nito.AsyncEx;
 using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Electrolite.Main
+namespace Electrolite.Core.Adapters
 {
-    sealed class IpcSession : ISession
+    public sealed class IpcSession : ISession
     {
         public Uri Url { get; }
         public ElectroliteOptions StartupOptions { get; }
-        readonly IPlatformAdapter _adapter;
+        readonly IIpcPlatformAdapter _adapter;
         readonly IpcPipeDuplex<IBrowserHost, IBrowserWindow> _duplex;
         readonly CancellationTokenSource _source;
 
@@ -28,7 +28,7 @@ namespace Electrolite.Main
         TaskCompletionSource<bool> _startWaiter;
         TaskCompletionSource<bool> _stopWaiter;
 
-        public IpcSession(IPlatformAdapter adapter, Uri url, ElectroliteOptions options)
+        public IpcSession(IIpcPlatformAdapter adapter, Uri url, ElectroliteOptions options)
         {
             _adapter = adapter;
             Url = url;

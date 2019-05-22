@@ -5,8 +5,8 @@ Author: Pablo Carbonell
 */
 
 using CefSharp.WinForms;
-using Electrolite.Common.Ipc;
-using Electrolite.Common.Main;
+using Electrolite.Core.Ipc;
+using Electrolite.Core.Main;
 using System;
 using System.Windows.Forms;
 

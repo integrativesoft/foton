@@ -4,12 +4,13 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
+using Electrolite.Windows.Main;
 using System;
 using System.Runtime.InteropServices;
 
-namespace Electrolite.Adapters
+namespace Electrolite.Core.Adapters
 {
-    static class PlatformAdapterFactory
+    public static class PlatformFactory
     {
         public static IPlatformAdapter CreateAdapter()
         {

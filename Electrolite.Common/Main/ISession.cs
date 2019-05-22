@@ -4,13 +4,13 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using Electrolite.Common.Ipc;
-using Electrolite.Common.Main;
+using Electrolite.Core.Ipc;
+using Electrolite.Core.Main;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Electrolite.Main
+namespace Electrolite.Core.Adapters
 {
     public interface ISession : IDisposable
     {
@@ -21,7 +21,7 @@ namespace Electrolite.Main
         void Run();
         Task RunAsync(CancellationToken token = default);
         void RunBackground(CancellationToken token = default);
-        Task ModifySettings(ElectroliteOptions options);
+        Task ModifySettings(ElectroliteOptions options); // TODO: use independent properties
         int BrowserProcessId { get; }
         Task WaitForShutdown();
     }

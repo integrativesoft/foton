@@ -2,16 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Platforms>AnyCPU;x64</Platforms>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Main\thunderbolt-twotone.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="..\SharedAssemblyInfo.cs" Link="Main\SharedAssemblyInfo.cs" />
+    <Compile Include="..\SharedAssemblyInfo.cs" Link="SharedAssemblyInfo.cs" />
   </ItemGroup>
 
   <ItemGroup>

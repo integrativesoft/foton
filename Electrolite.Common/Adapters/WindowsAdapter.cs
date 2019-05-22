@@ -4,15 +4,16 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
+using Electrolite.Core.Adapters;
+using Electrolite.Core.Main;
 using System;
 using System.Diagnostics;
 using System.IO;
-using Electrolite.Common.Main;
-using Electrolite.Main;
+using System.Runtime.InteropServices;
 
-namespace Electrolite.Adapters
+namespace Electrolite.Windows.Main
 {
-    class WindowsAdapter : IPlatformAdapter
+    public sealed class WindowsAdapter : IIpcPlatformAdapter
     {
 #if DEBUG
         const string BasePath = @"..\..\..\..\Electrolite.Windows\bin\x64\Debug";
@@ -20,6 +21,8 @@ namespace Electrolite.Adapters
         const string BasePath = "Windows";
 #endif
         const string Filename = "Electrolite.Windows.exe";
+
+        public bool IsSupported => RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 
         public Process LaunchBrowser(int parentProcessId, string splashPath)
         {

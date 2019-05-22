@@ -10,7 +10,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Electrolite.Common.Ipc
+namespace Electrolite.Core.Ipc
 {
     public sealed class IpcPipeDuplex<TServer, TClient>
         where TServer : class

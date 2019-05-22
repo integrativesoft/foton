@@ -6,7 +6,7 @@ Author: Pablo Carbonell
 
 using System.Runtime.Serialization;
 
-namespace Electrolite.Common.Main
+namespace Electrolite.Core.Main
 {
     [DataContract]
     public sealed class ElectroliteSize

@@ -6,7 +6,7 @@ Author: Pablo Carbonell
 
 using System;
 
-namespace Electrolite.Common.Main
+namespace Electrolite.Core.Main
 {
     public sealed class StartupParameters
     {

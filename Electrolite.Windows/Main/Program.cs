@@ -6,8 +6,8 @@ Author: Pablo Carbonell
 
 using CefSharp;
 using CefSharp.WinForms;
-using Electrolite.Common.Ipc;
-using Electrolite.Common.Main;
+using Electrolite.Core.Ipc;
+using Electrolite.Core.Main;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -56,9 +56,9 @@ namespace Electrolite.Windows.Main
             throw new ArgumentException("Endpoint not specified or invalid.");
         }
 
-        private static IpcPipeDuplex<IBrowserWindow, Common.Main.IBrowserHost> CreateDuplex(int parentId)
+        private static IpcPipeDuplex<IBrowserWindow, Core.Main.IBrowserHost> CreateDuplex(int parentId)
         {
-            return new IpcPipeDuplex<IBrowserWindow, Common.Main.IBrowserHost>(new IpcDuplexParameters<IBrowserWindow>
+            return new IpcPipeDuplex<IBrowserWindow, Core.Main.IBrowserHost>(new IpcDuplexParameters<IBrowserWindow>
             {
                 ClientPipe = ElectroliteCommon.ElectroliteHost(parentId),
                 ServerEndpoint = ElectroliteCommon.ElectroliteBrowserEndpoint(parentId),

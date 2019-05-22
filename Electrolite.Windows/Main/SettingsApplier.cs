@@ -4,7 +4,7 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using Electrolite.Common.Main;
+using Electrolite.Core.Main;
 using System;
 using System.Drawing;
 using System.Reflection;

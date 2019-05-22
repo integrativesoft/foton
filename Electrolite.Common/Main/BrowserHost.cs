@@ -4,8 +4,9 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using Electrolite.Common.Ipc;
-using Electrolite.Common.Main;
+using Electrolite.Core.Adapters;
+using Electrolite.Core.Ipc;
+using Electrolite.Core.Main;
 
 namespace Electrolite.Main
 {

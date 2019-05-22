@@ -4,15 +4,13 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using Electrolite.Common.Main;
-using Electrolite.Main;
+using Electrolite.Core.Main;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace DemoElectrolite
+namespace SampleApp
 {
     public static class Program
     {
@@ -20,19 +18,14 @@ namespace DemoElectrolite
 
         public static async Task Main()
         {
-            var watch = new Stopwatch();
-            watch.Start();
-            Console.WriteLine("Starting...");
-            var options = new ElectroliteOptions();
+            var options = new ElectroliteOptions
+            {
+                Title = "Sample Electrolite app"
+            };
             var url = new Uri(MyURL);
             using (var session = ElectroliteApp.CreateSession(url, options))
             {
-                session.SplashImagePath = GetImagePath("SampleSplash.jpg");
-                session.OnReady += ((sender, args) =>
-                {
-                    watch.Stop();
-                    Console.WriteLine($"Elapsed: {watch.Elapsed}");
-                });
+                session.SplashImagePath = GetIncludedImageFullPath("SampleSplash.jpg");
                 session.BackgroundError += ((sender, args) =>
                 {
                     Console.WriteLine(args.Exception.ToString());
@@ -42,7 +35,7 @@ namespace DemoElectrolite
             }
         }
 
-        private static string GetImagePath(string name)
+        private static string GetIncludedImageFullPath(string name)
         {
             var exePath = Assembly.GetEntryAssembly().Location;
             var folder = Path.GetDirectoryName(exePath);

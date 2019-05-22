@@ -10,7 +10,7 @@ using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Electrolite.Common.Ipc
+namespace Electrolite.Core.Ipc
 {
     public static class IpcExtensions
     {

@@ -5,13 +5,12 @@ Author: Pablo Carbonell
 */
 
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Reflection;
 
-namespace Electrolite.Adapters
+namespace Electrolite.Core.Adapters
 {
-    static class PlatformCommon
+    public static class PlatformCommon
     {
         public static Process LaunchBrowser(string endpointName, string path)
         {

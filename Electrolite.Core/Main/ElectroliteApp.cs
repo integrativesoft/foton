@@ -4,11 +4,10 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using Electrolite.Adapters;
-using Electrolite.Common.Main;
+using Electrolite.Core.Adapters;
 using System;
 
-namespace Electrolite.Main
+namespace Electrolite.Core.Main
 {
     public static class ElectroliteApp
     {
@@ -17,7 +16,7 @@ namespace Electrolite.Main
 
         public static ISession CreateSession(Uri url, ElectroliteOptions options)
         {
-            var adapter = PlatformAdapterFactory.CreateAdapter();
+            var adapter = PlatformFactory.CreateAdapter();
             return adapter.CreateSession(url, options);
         }
     }
