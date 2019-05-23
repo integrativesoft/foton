@@ -6,7 +6,7 @@ Author: Pablo Carbonell
 
 using System.Runtime.Serialization;
 
-namespace Electrolite.Core.Main
+namespace Electrolite.Common.Main
 {
     [DataContract]
     public class ElectroliteOptions : IElectroliteOptions

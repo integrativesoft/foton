@@ -4,19 +4,19 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using Electrolite.Core.Ipc;
-using Electrolite.Core.Main;
 using Eto.Forms;
 using System;
+using Electrolite.Common.Ipc;
+using Electrolite.Common.Main;
 
 namespace Electrolite.Linux.Main
 {
-    class MainForm : Dialog
+    internal class MainForm : Dialog
     {
-        readonly IpcPipeDuplex<IBrowserWindow, IBrowserHost> _duplex;
-        readonly Form _splash;
-        readonly StartupParameters _startup;
-        readonly WebView _browser;
+        private readonly IpcPipeDuplex<IBrowserWindow, IBrowserHost> _duplex;
+        private readonly Form _splash;
+        private readonly StartupParameters _startup;
+        private readonly WebView _browser;
 
         public MainForm(IpcPipeDuplex<IBrowserWindow, IBrowserHost> duplex, Form splash)
         {

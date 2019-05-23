@@ -5,15 +5,14 @@ Author: Pablo Carbonell
 */
 
 using Electrolite.Common.Adapters;
-using Electrolite.Core.Adapters;
 using Eto.Forms;
 using Eto.GtkSharp.Forms;
 
 namespace Electrolite.Linux.Main
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var parameters = ProcessArguments.Parse(args);
             MainInternal(parameters);

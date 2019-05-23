@@ -6,7 +6,7 @@ Author: Pablo Carbonell
 
 using System;
 
-namespace Electrolite.Core.Ipc
+namespace Electrolite.Common.Main
 {
     public class BackgroundErrorEventArgs : EventArgs
     {

@@ -4,14 +4,14 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using Electrolite.Core.Ipc;
-using Electrolite.Core.Main;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using Electrolite.Common.Ipc;
+using Electrolite.Common.Main;
 
-namespace Electrolite.Core.Adapters
+namespace Electrolite.Common.Adapters
 {
     public static class PlatformCommon
     {

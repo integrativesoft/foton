@@ -4,13 +4,11 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using Electrolite.Core.Ipc;
-using Electrolite.Core.Main;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Electrolite.Core.Adapters
+namespace Electrolite.Common.Main
 {
     public interface ISession : IDisposable
     {

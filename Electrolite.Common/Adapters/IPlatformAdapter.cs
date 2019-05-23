@@ -4,15 +4,14 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using Electrolite.Core.Main;
 using System;
 using System.Diagnostics;
+using Electrolite.Common.Main;
 
-namespace Electrolite.Core.Adapters
+namespace Electrolite.Common.Adapters
 {
     public interface IPlatformAdapter
     {
-        bool IsSupported { get; }
         ISession CreateSession(Uri url, ElectroliteOptions options);
     }
 

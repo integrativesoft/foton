@@ -4,42 +4,41 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using Electrolite.Core.Ipc;
-using Electrolite.Core.Main;
-using Electrolite.Main;
-using Nito.AsyncEx;
 using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using Electrolite.Common.Ipc;
+using Electrolite.Common.Main;
+using Nito.AsyncEx;
 
-namespace Electrolite.Core.Adapters
+namespace Electrolite.Common.Adapters
 {
     public sealed class IpcSession : ISession
     {
         public Uri Url { get; }
         public ElectroliteOptions StartupOptions { get; }
-        readonly IIpcPlatformAdapter _adapter;
-        readonly IpcPipeDuplex<IBrowserHost, IBrowserWindow> _duplex;
-        readonly CancellationTokenSource _source;
+        private readonly IIpcPlatformAdapter _adapter;
+        private readonly IpcPipeDuplex<IBrowserHost, IBrowserWindow> _duplex;
+        private readonly CancellationTokenSource _source;
 
-        bool _running;
-        Process _browser;
-        TaskCompletionSource<bool> _startWaiter;
-        TaskCompletionSource<bool> _stopWaiter;
+        private bool _running;
+        private Process _browser;
+        private TaskCompletionSource<bool> _startWaiter;
+        private TaskCompletionSource<bool> _stopWaiter;
 
         public IpcSession(IIpcPlatformAdapter adapter, Uri url, ElectroliteOptions options)
         {
             _adapter = adapter;
             Url = url;
             StartupOptions = options;
-            int processId = Process.GetCurrentProcess().Id;
+            var processId = Process.GetCurrentProcess().Id;
             _duplex = new IpcPipeDuplex<IBrowserHost, IBrowserWindow>(new IpcDuplexParameters<IBrowserHost>
             {
                 ClientPipe = ElectroliteCommon.ElectroliteBrowser(processId),
                 ServerEndpoint = ElectroliteCommon.ElectroliteHostEndpoint(processId),
                 ServerPipe = ElectroliteCommon.ElectroliteHost(processId),
-                ServerFactory = ((provider) => new BrowserHost(this))
+                ServerFactory = provider => new BrowserHost(this)
             });
             _source = new CancellationTokenSource();
             _startWaiter = new TaskCompletionSource<bool>();
@@ -49,31 +48,27 @@ namespace Electrolite.Core.Adapters
         public event EventHandler OnReady;
         public event EventHandler<BackgroundErrorEventArgs> BackgroundError;
 
-        bool _disposed;
+        private bool _disposed;
 
         public void Dispose()
         {
-            if (!_disposed)
-            {
-                _disposed = true;
-                Stop();
-                _source.Dispose();
-            }
+            if (_disposed) return;
+            _disposed = true;
+            Stop();
+            _source.Dispose();
         }
 
         private void Stop()
         {
-            if (_running)
+            if (!_running) return;
+            _running = false;
+            _source.Cancel();
+            if (BrowserIsOpen())
             {
-                _running = false;
-                _source.Cancel();
-                if (BrowserIsOpen())
-                {
-                    _browser.Close();
-                }
-                _startWaiter = new TaskCompletionSource<bool>();
-                _stopWaiter.SetResult(true);
+                _browser.Close();
             }
+            _startWaiter = new TaskCompletionSource<bool>();
+            _stopWaiter.SetResult(true);
         }
 
         private bool BrowserIsOpen()
@@ -98,7 +93,7 @@ namespace Electrolite.Core.Adapters
 
         public void RunBackground(CancellationToken token = default)
         {
-            Task.Run(async () => await RunAsyncCatch(token));
+            Task.Run(async () => await RunAsyncCatch(token), token);
         }
 
         private async Task RunAsyncCatch(CancellationToken token = default)
@@ -139,7 +134,7 @@ namespace Electrolite.Core.Adapters
 
         private void LaunchBrowser()
         {            
-            int id = Process.GetCurrentProcess().Id;
+            var id = Process.GetCurrentProcess().Id;
             _browser = _adapter.LaunchBrowser(id, SplashImagePath);
             _browser.Exited += Browser_Exited;
             BrowserProcessId = _browser.Id;

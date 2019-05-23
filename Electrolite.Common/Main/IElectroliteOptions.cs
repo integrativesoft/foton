@@ -4,7 +4,7 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-namespace Electrolite.Core.Main
+namespace Electrolite.Common.Main
 {
     public interface IElectroliteOptions
     {

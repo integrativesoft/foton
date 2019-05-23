@@ -4,25 +4,22 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using Electrolite.Core.Adapters;
-using Electrolite.Core.Main;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
+using Electrolite.Common.Main;
 
-namespace Electrolite.Windows.Main
+namespace Electrolite.Common.Adapters
 {
-    public sealed class WindowsAdapter : IIpcPlatformAdapter
+    internal sealed class WindowsAdapter : IIpcPlatformAdapter
     {
 #if DEBUG
-        const string BasePath = @"..\..\..\..\Electrolite.Windows\bin\x64\Debug";
+        private const string BasePath = @"..\..\..\..\Electrolite.Windows\bin\x64\Debug";
 #else
         const string BasePath = "Windows";
 #endif
-        const string Filename = "Electrolite.Windows.exe";
-
-        public bool IsSupported => RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+        private const string Filename = "Electrolite.Windows.exe";
 
         public Process LaunchBrowser(int parentProcessId, string splashPath)
         {

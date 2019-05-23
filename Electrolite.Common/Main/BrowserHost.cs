@@ -4,15 +4,14 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using Electrolite.Core.Adapters;
-using Electrolite.Core.Ipc;
-using Electrolite.Core.Main;
+using Electrolite.Common.Adapters;
+using Electrolite.Common.Ipc;
 
-namespace Electrolite.Main
+namespace Electrolite.Common.Main
 {
-    sealed class BrowserHost : IBrowserHost
+    internal sealed class BrowserHost : IBrowserHost
     {
-        readonly IpcSession _parent;
+        private readonly IpcSession _parent;
 
         public BrowserHost(IpcSession parent)
         {

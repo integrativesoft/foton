@@ -6,7 +6,7 @@ Author: Pablo Carbonell
 
 using System;
 
-namespace Electrolite.Core.Ipc
+namespace Electrolite.Common.Ipc
 {
     public sealed class IpcDuplexParameters<TServer>
         where TServer : class

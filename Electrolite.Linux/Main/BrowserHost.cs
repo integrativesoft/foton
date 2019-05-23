@@ -4,12 +4,12 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using Electrolite.Core.Ipc;
-using Electrolite.Core.Main;
+using Electrolite.Common.Ipc;
+using Electrolite.Common.Main;
 
 namespace Electrolite.Linux.Main
 {
-    class BrowserHost : IBrowserWindow
+    internal class BrowserHost : IBrowserWindow
     {
         public static MainForm Form { get; set; }
 

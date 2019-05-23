@@ -9,7 +9,7 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 
-namespace Electrolite.Core.Main
+namespace Electrolite.Common.Main
 {
     public static class ElectroliteCommon
     {

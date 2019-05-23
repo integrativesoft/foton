@@ -4,7 +4,7 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-namespace Electrolite.Core.Ipc
+namespace Electrolite.Common.Ipc
 {
     public class Order
     {

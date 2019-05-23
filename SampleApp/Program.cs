@@ -9,12 +9,13 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
+using Electrolite.Common.Main;
 
 namespace SampleApp
 {
     public static class Program
     {
-        const string MyURL = "http://html5test.com";
+        private const string MyURL = "http://html5test.com";
 
         public static async Task Main()
         {

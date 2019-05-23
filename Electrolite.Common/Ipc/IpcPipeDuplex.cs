@@ -4,19 +4,20 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using JKang.IpcServiceFramework;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Electrolite.Common.Main;
+using JKang.IpcServiceFramework;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Electrolite.Core.Ipc
+namespace Electrolite.Common.Ipc
 {
     public sealed class IpcPipeDuplex<TServer, TClient>
         where TServer : class
         where TClient : class
     {
-        readonly IpcDuplexParameters<TServer> _parameters;
+        private readonly IpcDuplexParameters<TServer> _parameters;
         public IIpcServiceHost Server { get; }
         public IpcServiceClient<TClient> Client { get; }
 

@@ -9,7 +9,7 @@ using Eto.Forms;
 
 namespace Electrolite.Linux.Main
 {
-    class SplashForm : Form
+    internal class SplashForm : Form
     {
         public SplashForm(string path)
         {

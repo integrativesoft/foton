@@ -4,13 +4,13 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using JKang.IpcServiceFramework;
-using Nito.AsyncEx;
 using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using JKang.IpcServiceFramework;
+using Nito.AsyncEx;
 
-namespace Electrolite.Core.Ipc
+namespace Electrolite.Common.Ipc
 {
     public static class IpcExtensions
     {
