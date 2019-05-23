@@ -59,7 +59,8 @@ namespace Electrolite.Common.Adapters
                     FileName = "/bin/bash",
                     Arguments = "-c \"" + command + "\"",
                     UseShellExecute = false
-                }
+                },
+                EnableRaisingEvents = true
             };
             proc.Start();
             return proc;

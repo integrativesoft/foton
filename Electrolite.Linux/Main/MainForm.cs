@@ -23,7 +23,6 @@ namespace Electrolite.Linux.Main
             _duplex = duplex;
             _splash = splash;
             Visible = false;
-            Size = new Size(1000, 800);
             _painter = new SettingsApplier(this);
             var startup = _duplex.Client.Order(x => x.GetStartupOptions());
             ApplySettings(startup.Options);
@@ -40,6 +39,7 @@ namespace Electrolite.Linux.Main
         private void MainForm_FormClosed(object sender, EventArgs e)
         {
             _duplex.Client.Order(x => x.NotifyClosing());
+            Environment.Exit(0);
         }
 
         private void Browser_LoadingStateChanged(object sender, WebViewLoadedEventArgs e)

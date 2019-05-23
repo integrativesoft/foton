@@ -36,11 +36,12 @@ namespace SampleApp
                 session.RunBackground();
                 await session.WaitForShutdown();
             }
+            Environment.Exit(0);
         }
 
         private static string GetIncludedImageFullPath(string name)
         {
-            var exePath = Assembly.GetEntryAssembly().Location;
+            var exePath = Assembly.GetEntryAssembly()?.Location;
             var folder = Path.GetDirectoryName(exePath);
             return Path.Combine(folder, name);
         }
