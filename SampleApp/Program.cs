@@ -15,15 +15,17 @@ namespace SampleApp
 {
     public static class Program
     {
-        private const string MyURL = "http://html5test.com";
+        private const string MyUrl = "http://html5test.com";
 
         public static async Task Main()
         {
+            Console.WriteLine("Current directory:");
+            Console.WriteLine(Directory.GetCurrentDirectory());
             var options = new ElectroliteOptions
             {
                 Title = "Sample Electrolite app"
             };
-            var url = new Uri(MyURL);
+            var url = new Uri(MyUrl);
             using (var session = ElectroliteApp.CreateSession(url, options))
             {
                 session.SplashImagePath = GetIncludedImageFullPath("SampleSplash.jpg");

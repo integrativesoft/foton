@@ -6,6 +6,7 @@ Author: Pablo Carbonell
 
 using Eto.Drawing;
 using Eto.Forms;
+using Eto.GtkSharp.Forms;
 
 namespace Electrolite.Linux.Main
 {

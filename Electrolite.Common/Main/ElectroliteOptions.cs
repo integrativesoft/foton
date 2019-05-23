@@ -18,9 +18,6 @@ namespace Electrolite.Common.Main
         public ElectroliteSize MinSize { get; set; } = new ElectroliteSize(400, 300);
 
         [DataMember]
-        public ElectroliteSize MaxSize { get; set; }
-
-        [DataMember]
         public string Title { get; set; } = "Electrolite";
 
         [DataMember]

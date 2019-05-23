@@ -26,7 +26,7 @@ namespace Electrolite.Common.Adapters
             string path = Path.Combine(BasePath, Filename);
             PlatformCommon.VerifyFileExists(path);
             var args = BuildArgs(parentProcessId, splashPath);
-            return PlatformCommon.LaunchBrowser(args, path);
+            return PlatformCommon.LaunchBrowser(path, args);
         }
 
         private static string BuildArgs(int parentProcessId, string splashPath)

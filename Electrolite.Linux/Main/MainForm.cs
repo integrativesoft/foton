@@ -8,60 +8,50 @@ using Eto.Forms;
 using System;
 using Electrolite.Common.Ipc;
 using Electrolite.Common.Main;
+using Eto.Drawing;
 
 namespace Electrolite.Linux.Main
 {
-    internal class MainForm : Dialog
+    internal sealed class MainForm : Form
     {
         private readonly IpcPipeDuplex<IBrowserWindow, IBrowserHost> _duplex;
-        private readonly Form _splash;
-        private readonly StartupParameters _startup;
-        private readonly WebView _browser;
+        private readonly SplashForm _splash;
+        private readonly SettingsApplier _painter;
 
-        public MainForm(IpcPipeDuplex<IBrowserWindow, IBrowserHost> duplex, Form splash)
+        public MainForm(IpcPipeDuplex<IBrowserWindow, IBrowserHost> duplex, SplashForm splash)
         {
             _duplex = duplex;
             _splash = splash;
-            //_transparenter = new Transparenter(this);
-            //_painter = new SettingsApplier(this);
-            _startup = _duplex.Client.Order(x => x.GetStartupOptions());
-            //ApplySetttings(_startup.Options);
-            //_painter.CenterForm();
-            _browser = new WebView
+            Visible = false;
+            Size = new Size(1000, 800);
+            _painter = new SettingsApplier(this);
+            var startup = _duplex.Client.Order(x => x.GetStartupOptions());
+            ApplySettings(startup.Options);
+            var browser = new WebView
             {
-                Url = new Uri(_startup.Url.AbsoluteUri)
+                Url = new Uri(startup.Url.AbsoluteUri)
             };
-            _browser.DocumentLoaded += Browser_LoadingStateChanged;
-            Content = _browser;
-            //ResizeBegin += (s, e) => SuspendLayout();
-            //ResizeEnd += (s, e) => ResumeLayout(true);
+            browser.DocumentLoaded += Browser_LoadingStateChanged;
+            Content = browser;
             Closed += MainForm_FormClosed;
-            //_transparenter.MakeTransparent();
             _duplex.RunBackground();
         }
 
         private void MainForm_FormClosed(object sender, EventArgs e)
         {
-            try
-            {
-                _duplex.Client.Order(x => x.NotifyClosing());
-            }
-            catch
-            {
-            }            
+            _duplex.Client.Order(x => x.NotifyClosing());
         }
 
         private void Browser_LoadingStateChanged(object sender, WebViewLoadedEventArgs e)
         {
-            //_splash?.Hide();
             _duplex.Client.Order(x => x.NotifyReady());
-            //_transparenter.MakeOpaque();
+            Visible = true;
             _splash?.Close();
         }
 
-        public void ApplySetttings(ElectroliteOptions options)
+        public void ApplySettings(ElectroliteOptions options)
         {
-            //_painter.Apply(options);
+            _painter.Apply(options);
         }
     }
 }

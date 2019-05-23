@@ -19,7 +19,7 @@ namespace Electrolite.Linux.Main
         {
             return IpcExtensions.WrapOrder(() =>
             {
-                Form.ApplySetttings(options);
+                Form.ApplySettings(options);
             });
         }
     }

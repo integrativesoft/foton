@@ -10,7 +10,6 @@ namespace Electrolite.Common.Main
     {
         ElectroliteSize Size { get; set; }
         ElectroliteSize MinSize { get; set; }
-        ElectroliteSize MaxSize { get; set; }
         string Title { get; set; }
         bool MinButton { get; set; }
         bool MaxButton { get; set; }

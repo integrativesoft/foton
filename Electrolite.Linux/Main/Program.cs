@@ -10,7 +10,7 @@ using Eto.GtkSharp.Forms;
 
 namespace Electrolite.Linux.Main
 {
-    internal class Program
+    internal static class Program
     {
         private static void Main(string[] args)
         {
@@ -21,12 +21,21 @@ namespace Electrolite.Linux.Main
         private static void MainInternal(ProcessArguments args)
         {
             LoadStyles();
-            var duplex = PlatformCommon.CreateClientDuplex(args.ParentProcessId, () => new BrowserHost());
-            var splash = ShowSplash(args.SplashPath);
+            var app = new Application();
+            app.Initialized += (sender, e) => AppInitialized(app, args);
+            app.Run();
+        }
 
+        private static void AppInitialized(Application app, ProcessArguments args)
+        {
+            var splash = ShowSplash(args.SplashPath);
+            var duplex = PlatformCommon.CreateClientDuplex(args.ParentProcessId, () => new BrowserHost());
             var form = new MainForm(duplex, splash);
+            form.Show();
+            SettingsApplier.CenterForm(form);
+            form.Visible = false;
             BrowserHost.Form = form;
-            new Application().Run(form);
+            form.Closed += (sender, eventArgs) => app.Quit();
         }
 
         private static void LoadStyles()
@@ -38,10 +47,11 @@ namespace Electrolite.Linux.Main
                 handler.Resizable = false;
                 handler.Maximizable = false;
                 handler.Minimizable = false;
+                handler.WindowStyle = WindowStyle.None;
             });
         }
-
-        private static Form ShowSplash(string path)
+        
+        private static SplashForm ShowSplash(string path)
         {
             if (string.IsNullOrEmpty(path))
             {
@@ -49,6 +59,7 @@ namespace Electrolite.Linux.Main
             }
             var splash = new SplashForm(path);
             splash.Show();
+            SettingsApplier.CenterForm(splash);
             splash.BringToFront();
             return splash;
         }

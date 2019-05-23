@@ -15,7 +15,7 @@ namespace Electrolite.Common.Adapters
 {
     public static class PlatformCommon
     {
-        public static Process LaunchBrowser(string endpointName, string path)
+        public static Process LaunchBrowser(string path, string args)
         {
             var process = new Process
             {
@@ -24,7 +24,7 @@ namespace Electrolite.Common.Adapters
                     CreateNoWindow = false,
                     UseShellExecute = true,
                     FileName = path,
-                    Arguments = endpointName
+                    Arguments = args
                 },
                 EnableRaisingEvents = true
             };
@@ -32,18 +32,11 @@ namespace Electrolite.Common.Adapters
             {
                 process.Start();
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
-                System.Console.Write(e.Message);
+                Console.Write(e.Message);
             }
             return process;
-        }
-
-        public static string GetAssemblyPath()
-        {
-            var assembly = Assembly.GetAssembly(typeof(PlatformCommon));
-            var path = assembly.CodeBase;
-            return Path.GetDirectoryName(path);
         }
 
         public static void VerifyFileExists(string path)
