@@ -13,13 +13,10 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Main\favicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\SharedAssemblyInfo.cs" Link="Main\SharedAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Main\favicon.ico" />
+    <EmbeddedResource Include="..\Assets\favicon.ico" Link="Main\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CefSharp.WinForms" Version="73.1.130" />

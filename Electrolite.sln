@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Electrolite.Windows", "Elec
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Electrolite.Common", "Electrolite.Common\Electrolite.Common.csproj", "{F35C8031-7510-4CC7-A8CE-C94852BE2F8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Electrolite.Linux", "Electrolite.Linux\Electrolite.Linux.csproj", "{55F22072-05F2-4D92-81FE-D28B617F921F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,14 @@ Global
 		{F35C8031-7510-4CC7-A8CE-C94852BE2F8C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F35C8031-7510-4CC7-A8CE-C94852BE2F8C}.Release|x64.ActiveCfg = Release|Any CPU
 		{F35C8031-7510-4CC7-A8CE-C94852BE2F8C}.Release|x64.Build.0 = Release|Any CPU
+		{55F22072-05F2-4D92-81FE-D28B617F921F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55F22072-05F2-4D92-81FE-D28B617F921F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55F22072-05F2-4D92-81FE-D28B617F921F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{55F22072-05F2-4D92-81FE-D28B617F921F}.Debug|x64.Build.0 = Debug|Any CPU
+		{55F22072-05F2-4D92-81FE-D28B617F921F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55F22072-05F2-4D92-81FE-D28B617F921F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55F22072-05F2-4D92-81FE-D28B617F921F}.Release|x64.ActiveCfg = Release|Any CPU
+		{55F22072-05F2-4D92-81FE-D28B617F921F}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

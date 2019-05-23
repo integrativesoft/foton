@@ -11,9 +11,9 @@ namespace Electrolite.Windows.Main
 {
     class BrowserHost : IBrowserWindow
     {
-        public MainForm Form { get; set; }
+        public static MainForm Form { get; set; }
 
-        public PlatformType PlatformType => PlatformType.WindowsAny;
+        public PlatformType PlatformType => PlatformType.Windows;
 
         public Order ModifyOptions(ElectroliteOptions options)
         {

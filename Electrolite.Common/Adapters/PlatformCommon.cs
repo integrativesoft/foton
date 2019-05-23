@@ -4,6 +4,9 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
+using Electrolite.Core.Ipc;
+using Electrolite.Core.Main;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -50,6 +53,17 @@ namespace Electrolite.Core.Adapters
                 string message = $"File not found: {path}";
                 throw new System.InvalidProgramException(message);
             }
+        }
+
+        public static IpcPipeDuplex<IBrowserWindow, IBrowserHost> CreateClientDuplex(int parentId, Func<IBrowserWindow> factory)
+        {
+            return new IpcPipeDuplex<IBrowserWindow, IBrowserHost>(new IpcDuplexParameters<IBrowserWindow>
+            {
+                ClientPipe = ElectroliteCommon.ElectroliteHost(parentId),
+                ServerEndpoint = ElectroliteCommon.ElectroliteBrowserEndpoint(parentId),
+                ServerPipe = ElectroliteCommon.ElectroliteBrowser(parentId),
+                ServerFactory = (service => factory())
+            });
         }
     }
 }

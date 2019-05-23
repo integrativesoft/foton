@@ -18,6 +18,10 @@ namespace Electrolite.Core.Adapters
             {
                 return new WindowsAdapter();
             }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                return new LinuxAdapter();
+            }
             else
             {
                 throw new NotImplementedException();

@@ -21,7 +21,7 @@ namespace Electrolite.Core.Adapters
         void Run();
         Task RunAsync(CancellationToken token = default);
         void RunBackground(CancellationToken token = default);
-        Task ModifySettings(ElectroliteOptions options); // TODO: use independent properties
+        Task ModifySettings(ElectroliteOptions options);
         int BrowserProcessId { get; }
         Task WaitForShutdown();
     }

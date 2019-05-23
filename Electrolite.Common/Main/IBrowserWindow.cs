@@ -10,8 +10,9 @@ namespace Electrolite.Core.Main
 {
     public enum PlatformType
     {
-        WindowsAny,
-        UnixAny
+        Windows,
+        Linux,
+        MacOS
     }
 
     public interface IBrowserWindow

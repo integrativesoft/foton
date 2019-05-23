@@ -4,19 +4,15 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using CefSharp;
-using CefSharp.WinForms;
 using Electrolite.Common.Adapters;
 using Electrolite.Core.Adapters;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
+using Eto.Forms;
+using Eto.GtkSharp.Forms;
 
-namespace Electrolite.Windows.Main
+namespace Electrolite.Linux.Main
 {
-    static class Program
+    class Program
     {
-        [STAThread]
         static void Main(string[] args)
         {
             var parameters = ProcessArguments.Parse(args);
@@ -25,29 +21,25 @@ namespace Electrolite.Windows.Main
 
         private static void MainInternal(ProcessArguments args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.ApplicationExit += Application_ApplicationExit;
-
+            LoadStyles();
             var duplex = PlatformCommon.CreateClientDuplex(args.ParentProcessId, () => new BrowserHost());
             var splash = ShowSplash(args.SplashPath);
 
-            InitializeCef();
             var form = new MainForm(duplex, splash);
             BrowserHost.Form = form;
-            Application.Run(form);
+            new Application().Run(form);
         }
 
-        private static void InitializeCef()
+        private static void LoadStyles()
         {
-            Cef.EnableHighDPISupport();
-            var settings = new CefSettings();
-            Cef.Initialize(settings);
-        }
-
-        private static void Application_ApplicationExit(object sender, EventArgs e)
-        {
-            Cef.Shutdown();
+            Eto.Style.Add<FormHandler>("splash", handler =>
+            {
+                handler.ShowBorder = false;
+                handler.ShowInTaskbar = false;
+                handler.Resizable = false;
+                handler.Maximizable = false;
+                handler.Minimizable = false;
+            });
         }
 
         private static Form ShowSplash(string path)
@@ -56,11 +48,11 @@ namespace Electrolite.Windows.Main
             {
                 return null;
             }
-            var image = Image.FromFile(path);
-            var splash = new SplashForm(image);
+            var splash = new SplashForm(path);
             splash.Show();
             splash.BringToFront();
             return splash;
         }
+
     }
 }
