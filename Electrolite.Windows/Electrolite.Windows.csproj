@@ -19,7 +19,7 @@
     <EmbeddedResource Include="..\Assets\favicon.ico" Link="Main\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CefSharp.WinForms" Version="73.1.130" />
+    <PackageReference Include="CefSharp.WinForms" Version="98.1.210" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
