@@ -15,7 +15,7 @@
 
 
 ## Foton
-Prototype for an Electron alternative written in C#.
+Prototype for an Electron alternative written in C# by Integrativesoft.
 
 ## Status of project
 Active
