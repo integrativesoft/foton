@@ -15,7 +15,7 @@
 
 
 ## Foton
-Prototype for an Electron alternative
+Prototype for an Electron alternative written in C#.
 
 ## Status of project
 Active
