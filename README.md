@@ -24,7 +24,7 @@ Active
 [Logo](https://www.flaticon.com/br/icone-gratis/foton_4214992) is licensed with Flaticon License - *free for personal and commercial use with attribution.*
 
 ## Contribute
-If you have any questions, feel free to open an issue or reach out at PR.
+If you have any questions, feel free to open an issue.
 
 ## Contributors
 <a href="https://github.com/codehangen/foton/graphs/contributors">
