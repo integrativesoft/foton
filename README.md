@@ -43,6 +43,13 @@ First, download and install C# in Visual Studio - last version is required.
 ## Contribute
 If you have any questions, feel free to open an issue.
 
+## Todo & test
+- [ ] Try to run the project in Windows and Linux and verify that it still works.
+- [ ] Update the version of C# and .NET to the latest version.
+- [ ] Verify that the 3rd party libraries for support in Windows and Linux still are maintained, update versions if needed.
+- [ ] Add support for MacOS.
+- [ ] Create a Hello World application that uses this library and runs cross-platform.
+
 ## License
 - Foton is licensed with Apache License 2.0 by Integrative Software LLC and contributors
 - The [logo](https://www.flaticon.com/br/icone-gratis/foton_4214992) is licensed with Flaticon License: *free for personal and commercial use with attribution.*
