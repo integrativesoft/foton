@@ -55,6 +55,6 @@ If you have any questions, feel free to open an issue.
 - The [logo](https://www.flaticon.com/br/icone-gratis/foton_4214992) is licensed with Flaticon License: *free for personal and commercial use with attribution.*
 
 ## Contributors
-<a href="https://github.com/codehangen/foton/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=codehangen/foton" width="60px"/>
+<a href="https://github.com/integrativesoft/foton/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=integrativesoft/foton" width="90px"/>
 </a>
