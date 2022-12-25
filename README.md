@@ -43,11 +43,17 @@ First, download and install C# in Visual Studio - last version is required.
 ## Contribute
 If you have any questions, feel free to open an issue.
 
+## Support
+- [x] Windows
+- [x] Linux
+
+## Roadmap
+- [ ] Add support for MacOS in future
+
 ## Todo & test
 - [ ] Try to run the project in Windows and Linux and verify that it still works.
 - [ ] Update the version of C# and .NET to the latest version.
 - [ ] Verify that the 3rd party libraries for support in Windows and Linux still are maintained, update versions if needed.
-- [ ] Add support for MacOS.
 - [ ] Create a Hello World application that uses this library and runs cross-platform.
 
 ## License
