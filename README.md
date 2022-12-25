@@ -50,6 +50,11 @@ If you have any questions, feel free to open an issue.
 - [ ] Add support for MacOS.
 - [ ] Create a Hello World application that uses this library and runs cross-platform.
 
+## Support
+- Windows
+- Linux
+- MacOS
+
 ## License
 - Foton is licensed with Apache License 2.0 by Integrative Software LLC and contributors
 - The [logo](https://www.flaticon.com/br/icone-gratis/foton_4214992) is licensed with Flaticon License: *free for personal and commercial use with attribution.*
