@@ -51,9 +51,10 @@ If you have any questions, feel free to open an issue.
 - [ ] Create a Hello World application that uses this library and runs cross-platform.
 
 ## Support
-- Windows
-- Linux
-- MacOS
+- [x] Windows
+- [x] Linux
+- [ ] Add support in future (MacOs) for foton
+
 
 ## License
 - Foton is licensed with Apache License 2.0 by Integrative Software LLC and contributors
