@@ -4,12 +4,12 @@ Created: 5/2019
 Author: Pablo Carbonell
 */
 
-using Electrolite.Core.Main;
+using Foton.Core.Main;
 using System;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
-using Electrolite.Common.Main;
+using Foton.Common.Main;
 
 namespace SampleApp
 {
@@ -23,7 +23,7 @@ namespace SampleApp
             Console.WriteLine(Directory.GetCurrentDirectory());
             var options = new ElectroliteOptions
             {
-                Title = "Sample Electrolite app"
+                Title = "Sample Foton app"
             };
             var url = new Uri(MyUrl);
             using (var session = ElectroliteApp.CreateSession(url, options))
