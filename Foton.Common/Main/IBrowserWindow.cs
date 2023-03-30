@@ -18,6 +18,6 @@ namespace Foton.Common.Main
     public interface IBrowserWindow
     {
         PlatformType PlatformType { get; }
-        Order ModifyOptions(ElectroliteOptions options);
+        Order ModifyOptions(FotonOptions options);
     }
 }

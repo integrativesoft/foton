@@ -49,7 +49,7 @@ namespace Foton.Linux.Main
             _splash?.Close();
         }
 
-        public void ApplySettings(ElectroliteOptions options)
+        public void ApplySettings(FotonOptions options)
         {
             _painter.Apply(options);
         }

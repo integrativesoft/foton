@@ -23,7 +23,7 @@ namespace Foton.Linux.Main
             _handler = (FormHandler) form.Handler;
         }
 
-        public void Apply(ElectroliteOptions options)
+        public void Apply(FotonOptions options)
         {
             if (options.Size != null)
             {

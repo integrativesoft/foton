@@ -52,9 +52,9 @@ namespace Foton.Common.Adapters
         {
             return new IpcPipeDuplex<IBrowserWindow, IBrowserHost>(new IpcDuplexParameters<IBrowserWindow>
             {
-                ClientPipe = ElectroliteCommon.ElectroliteHost(parentId),
-                ServerEndpoint = ElectroliteCommon.ElectroliteBrowserEndpoint(parentId),
-                ServerPipe = ElectroliteCommon.ElectroliteBrowser(parentId),
+                ClientPipe = FotonCommon.FotonHost(parentId),
+                ServerEndpoint = FotonCommon.FotonBrowserEndpoint(parentId),
+                ServerPipe = FotonCommon.FotonBrowser(parentId),
                 ServerFactory = (service => factory())
             });
         }

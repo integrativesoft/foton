@@ -11,16 +11,16 @@ using System.Reflection;
 
 namespace Foton.Common.Main
 {
-    public static class ElectroliteCommon
+    public static class FotonCommon
     {
         public static string GetClientEndpointName(int processId)
         {
-            return "ElectroliteClientEndpoint_" + processId.ToString(CultureInfo.InvariantCulture);
+            return "FotonClientEndpoint_" + processId.ToString(CultureInfo.InvariantCulture);
         }
 
         public static string GetClientPipeName(int processId)
         {
-            return "ElectroliteClientPipe_" + processId.ToString(CultureInfo.InvariantCulture);
+            return "FotonClientPipe_" + processId.ToString(CultureInfo.InvariantCulture);
         }
 
         public static Icon LoadIcon(this Assembly assembly, string resourceName)
@@ -39,17 +39,17 @@ namespace Foton.Common.Main
             }
         }
 
-        public static string ElectroliteHostEndpoint(int id)
-            => NameElement("ElectroliteHostEndpoint_{0}", id);
+        public static string FotonHostEndpoint(int id)
+            => NameElement("FotonHostEndpoint_{0}", id);
 
-        public static string ElectroliteBrowserEndpoint(int id)
-            => NameElement("ElectroliteEndpoint_{0}", id);
+        public static string FotonBrowserEndpoint(int id)
+            => NameElement("FotonEndpoint_{0}", id);
 
-        public static string ElectroliteBrowser(int id)
-            => NameElement("ElectroliteBrowser_{0}", id);
+        public static string FotonBrowser(int id)
+            => NameElement("FotonBrowser_{0}", id);
 
-        public static string ElectroliteHost(int id)
-            => NameElement("ElectroliteHost_{0}", id);
+        public static string FotonHost(int id)
+            => NameElement("FotonHost_{0}", id);
 
         private static string NameElement(string template, int id)
         {

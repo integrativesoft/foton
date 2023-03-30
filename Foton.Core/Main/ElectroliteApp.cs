@@ -10,12 +10,12 @@ using Foton.Common.Main;
 
 namespace Foton.Core.Main
 {
-    public static class ElectroliteApp
+    public static class FotonApp
     {
         public static ISession CreateSession(Uri url)
-            => CreateSession(url, new ElectroliteOptions());
+            => CreateSession(url, new FotonOptions());
 
-        public static ISession CreateSession(Uri url, ElectroliteOptions options)
+        public static ISession CreateSession(Uri url, FotonOptions options)
         {
             var adapter = PlatformFactory.CreateAdapter();
             return adapter.CreateSession(url, options);

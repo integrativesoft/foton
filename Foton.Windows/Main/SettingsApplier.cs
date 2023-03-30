@@ -21,7 +21,7 @@ namespace Foton.Windows.Main
             _form = form;
         }
 
-        public void Apply(ElectroliteOptions options)
+        public void Apply(FotonOptions options)
         {
             _form.Text = options.Title;
             _form.MinimizeBox = options.MinButton;
@@ -53,7 +53,7 @@ namespace Foton.Windows.Main
             return assembly.LoadIcon(resource);
         }
 
-        private Size GetSize(ElectroliteSize size)
+        private Size GetSize(FotonSize size)
         {
             if (size == null)
             {
@@ -65,7 +65,7 @@ namespace Foton.Windows.Main
             }
         }
 
-        private static Size ConvertSize(ElectroliteSize size)
+        private static Size ConvertSize(FotonSize size)
         {
             return new Size
             {

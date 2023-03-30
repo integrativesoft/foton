@@ -19,7 +19,7 @@ namespace Foton.Common.Main
         void Run();
         Task RunAsync(CancellationToken token = default);
         void RunBackground(CancellationToken token = default);
-        Task ModifySettings(ElectroliteOptions options);
+        Task ModifySettings(FotonOptions options);
         int BrowserProcessId { get; }
         Task WaitForShutdown();
     }

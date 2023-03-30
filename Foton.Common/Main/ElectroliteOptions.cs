@@ -9,13 +9,13 @@ using System.Runtime.Serialization;
 namespace Foton.Common.Main
 {
     [DataContract]
-    public class ElectroliteOptions : IElectroliteOptions
+    public class FotonOptions : IFotonOptions
     {
         [DataMember]
-        public ElectroliteSize Size { get; set; }
+        public FotonSize Size { get; set; }
 
         [DataMember]
-        public ElectroliteSize MinSize { get; set; } = new ElectroliteSize(1000, 700);
+        public FotonSize MinSize { get; set; } = new FotonSize(1000, 700);
 
         [DataMember]
         public string Title { get; set; } = "Foton";

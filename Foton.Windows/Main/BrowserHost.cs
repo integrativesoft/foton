@@ -15,7 +15,7 @@ namespace Foton.Windows.Main
 
         public PlatformType PlatformType => PlatformType.Windows;
 
-        public Order ModifyOptions(ElectroliteOptions options)
+        public Order ModifyOptions(FotonOptions options)
         {
             return IpcExtensions.WrapOrder(() =>
             {
@@ -23,7 +23,7 @@ namespace Foton.Windows.Main
             });
         }
 
-        private void ModifyOptionsSafe(ElectroliteOptions options)
+        private void ModifyOptionsSafe(FotonOptions options)
         {
             if (Form.InvokeRequired)
             {
@@ -35,6 +35,6 @@ namespace Foton.Windows.Main
             }
         }
 
-        private delegate void ModifyOptionsDelegate(ElectroliteOptions options);
+        private delegate void ModifyOptionsDelegate(FotonOptions options);
     }
 }

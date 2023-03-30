@@ -11,6 +11,6 @@ namespace Foton.Common.Main
     public sealed class StartupParameters
     {
         public Uri Url { get; set; }
-        public ElectroliteOptions Options { get; set; }
+        public FotonOptions Options { get; set; }
     }
 }

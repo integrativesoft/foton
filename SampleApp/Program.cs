@@ -21,12 +21,12 @@ namespace SampleApp
         {
             Console.WriteLine("Current directory:");
             Console.WriteLine(Directory.GetCurrentDirectory());
-            var options = new ElectroliteOptions
+            var options = new FotonOptions
             {
                 Title = "Sample Foton app"
             };
             var url = new Uri(MyUrl);
-            using (var session = ElectroliteApp.CreateSession(url, options))
+            using (var session = FotonApp.CreateSession(url, options))
             {
                 session.SplashImagePath = GetIncludedImageFullPath("SampleSplash.jpg");
                 session.BackgroundError += ((sender, args) =>

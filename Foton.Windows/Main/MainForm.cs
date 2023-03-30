@@ -75,7 +75,7 @@ namespace Foton.Windows.Main
             }
         }
 
-        public void ApplySetttings(ElectroliteOptions options)
+        public void ApplySetttings(FotonOptions options)
         {
             _painter.Apply(options);
         }

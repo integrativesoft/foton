@@ -12,7 +12,7 @@ namespace Foton.Common.Adapters
 {
     public interface IPlatformAdapter
     {
-        ISession CreateSession(Uri url, ElectroliteOptions options);
+        ISession CreateSession(Uri url, FotonOptions options);
     }
 
     public interface IIpcPlatformAdapter : IPlatformAdapter

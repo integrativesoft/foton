@@ -15,7 +15,7 @@ namespace Foton.Linux.Main
 
         public PlatformType PlatformType => PlatformType.Linux;
 
-        public Order ModifyOptions(ElectroliteOptions options)
+        public Order ModifyOptions(FotonOptions options)
         {
             return IpcExtensions.WrapOrder(() =>
             {

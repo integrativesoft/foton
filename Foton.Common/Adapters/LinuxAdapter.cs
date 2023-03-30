@@ -21,7 +21,7 @@ namespace Foton.Common.Adapters
 #endif
         private const string Filename = "Foton.Linux.dll";
 
-        public ISession CreateSession(Uri url, ElectroliteOptions options)
+        public ISession CreateSession(Uri url, FotonOptions options)
         {
             return new IpcSession(this, url, options);
         }

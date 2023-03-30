@@ -17,7 +17,7 @@ namespace Foton.Common.Adapters
     public sealed class IpcSession : ISession
     {
         public Uri Url { get; }
-        public ElectroliteOptions StartupOptions { get; }
+        public FotonOptions StartupOptions { get; }
         private readonly IIpcPlatformAdapter _adapter;
         private readonly IpcPipeDuplex<IBrowserHost, IBrowserWindow> _duplex;
         private readonly CancellationTokenSource _source;
@@ -27,7 +27,7 @@ namespace Foton.Common.Adapters
         private TaskCompletionSource<bool> _startWaiter;
         private TaskCompletionSource<bool> _stopWaiter;
 
-        public IpcSession(IIpcPlatformAdapter adapter, Uri url, ElectroliteOptions options)
+        public IpcSession(IIpcPlatformAdapter adapter, Uri url, FotonOptions options)
         {
             _adapter = adapter;
             Url = url;
@@ -35,9 +35,9 @@ namespace Foton.Common.Adapters
             var processId = Process.GetCurrentProcess().Id;
             _duplex = new IpcPipeDuplex<IBrowserHost, IBrowserWindow>(new IpcDuplexParameters<IBrowserHost>
             {
-                ClientPipe = ElectroliteCommon.ElectroliteBrowser(processId),
-                ServerEndpoint = ElectroliteCommon.ElectroliteHostEndpoint(processId),
-                ServerPipe = ElectroliteCommon.ElectroliteHost(processId),
+                ClientPipe = FotonCommon.FotonBrowser(processId),
+                ServerEndpoint = FotonCommon.FotonHostEndpoint(processId),
+                ServerPipe = FotonCommon.FotonHost(processId),
                 ServerFactory = provider => new BrowserHost(this)
             });
             _source = new CancellationTokenSource();
@@ -148,7 +148,7 @@ namespace Foton.Common.Adapters
             Stop();
         }
 
-        public async Task ModifySettings(ElectroliteOptions options)
+        public async Task ModifySettings(FotonOptions options)
         {
             await _duplex.Client.OrderAsync(x => x.ModifyOptions(options));
         }

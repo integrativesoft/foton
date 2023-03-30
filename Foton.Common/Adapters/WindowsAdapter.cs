@@ -39,7 +39,7 @@ namespace Foton.Common.Adapters
             return args;
         }
 
-        public ISession CreateSession(Uri url, ElectroliteOptions options)
+        public ISession CreateSession(Uri url, FotonOptions options)
         {
             return new IpcSession(this, url, options);
         }

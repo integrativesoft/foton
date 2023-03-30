@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 namespace Foton.Common.Main
 {
     [DataContract]
-    public sealed class ElectroliteSize
+    public sealed class FotonSize
     {
         [DataMember]
         public int Width { get; set; }
@@ -17,11 +17,11 @@ namespace Foton.Common.Main
         [DataMember]
         public int Height { get; set; }
 
-        public ElectroliteSize()
+        public FotonSize()
         {
         }
 
-        public ElectroliteSize(int width, int height)
+        public FotonSize(int width, int height)
         {
             Width = width;
             Height = height;
