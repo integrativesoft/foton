@@ -17,7 +17,7 @@ before_build:
     cd ..
     
 build:
-  project: Source\AlephNote.sln
+  project: Source\Foton.sln
   verbosity: minimal
 
 after_build:
@@ -25,8 +25,8 @@ after_build:
     DATA\PACKAGE_RELEASE.bat
 
 artifacts:
-  - path: AlephNote.zip
-    name: AlephNote.zip
+  - path: Foton.zip
+    name: Foton.zip
     
 deploy:
   tag: $(APPVEYOR_REPO_TAG_NAME)
@@ -34,8 +34,8 @@ deploy:
   description: '## Features\n\n - \n\n## Bugfixes\n\n - \n\n## Tasks\n\n - \n\n## Plugins\n\nPlugins included by default:\n~~~\nFilesystemPlugin   v\nHeadlessPlugin     v\nNextcloudPlugin    v\nSimpleNotePlugin   v\nStandardNotePlugin v\n~~~'
   provider: GitHub
   auth_token:
-    secure: 2/0Qj0uJ46O+KOsn2ZZh6/8fvxf0dXNV7R8Gx3Az0z9keyPmwJBF52hUMe8Tgchk
-  artifact: AlephNote.zip
+    secure: add
+  artifact: Foton.zip
   draft: true
   prerelease: false
   on:
