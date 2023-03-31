@@ -10,5 +10,5 @@ using System.Reflection;
 [assembly: AssemblyFileVersion("0.4.0.0")]
 [assembly: AssemblyInformationalVersion("0.4.0")]
 [assembly: AssemblyCompany("Integrative Software LLC")]
-[assembly: AssemblyProduct("Electrolite")]
-[assembly: AssemblyCopyright("Copyright © 2019 Integrative Software LLC")]
+[assembly: AssemblyProduct("Foton")]
+[assembly: AssemblyCopyright("Copyright ï¿½ 2019 Integrative Software LLC")]

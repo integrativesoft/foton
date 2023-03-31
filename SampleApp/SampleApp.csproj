@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Electrolite.Core\Electrolite.Core.csproj" />
+    <ProjectReference Include="..\Foton.Core\Foton.Core.csproj" />
   </ItemGroup>
 
 </Project>
