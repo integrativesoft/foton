@@ -1,0 +1,43 @@
+version: AV_{build}
+image: Visual Studio 2019
+configuration: Release
+platform: Any CPU
+clone_depth: 1
+
+before_build:
+- cmd: >-
+    git submodule update --recursive --init
+
+    git clean -fdx
+
+    cd Source
+
+    nuget restore
+
+    cd ..
+    
+build:
+  project: Source\AlephNote.sln
+  verbosity: minimal
+
+after_build:
+- cmd: >-
+    DATA\PACKAGE_RELEASE.bat
+
+artifacts:
+  - path: AlephNote.zip
+    name: AlephNote.zip
+    
+deploy:
+  tag: $(APPVEYOR_REPO_TAG_NAME)
+  release: 'Version $(APPVEYOR_REPO_TAG_NAME)'
+  description: '## Features\n\n - \n\n## Bugfixes\n\n - \n\n## Tasks\n\n - \n\n## Plugins\n\nPlugins included by default:\n~~~\nFilesystemPlugin   v\nHeadlessPlugin     v\nNextcloudPlugin    v\nSimpleNotePlugin   v\nStandardNotePlugin v\n~~~'
+  provider: GitHub
+  auth_token:
+    secure: 2/0Qj0uJ46O+KOsn2ZZh6/8fvxf0dXNV7R8Gx3Az0z9keyPmwJBF52hUMe8Tgchk
+  artifact: AlephNote.zip
+  draft: true
+  prerelease: false
+  on:
+    branch: master
+    APPVEYOR_REPO_TAG: true
