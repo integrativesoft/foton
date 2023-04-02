@@ -33,7 +33,7 @@
 Foton is prototype for an Electron alternative written in C# by Integrative Software LLC and contributors.
 
 ## Quick start
-First, download and install C# in Visual Studio - last version is required. 
+First, download and install C# in Visual Studio or VSCode - last version is required. 
 
 ## Features
 - Minimal size
