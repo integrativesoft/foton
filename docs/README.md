@@ -21,7 +21,7 @@
     <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="Foton is licensed with Apache License 2.0">
   </a>
   <a href="https://www.repostatus.org/#experimental">
-  <img src="https://github.com/GIScience/badges/raw/master/status/experimental.svg" alt="Project Status: Experimental – The project has reached a stable, usable state and is being actively developed."/>
+  <img src="https://github.com/GIScience/badges/raw/master/status/experimental.svg" alt="Project Status: Experimental – The project has reached usable state and is being actively developed."/>
   </a>
 </div>
 
@@ -31,9 +31,6 @@
 
 ## About
 Foton is prototype for an Electron alternative written in C# by Integrative Software LLC and contributors.
-
-## Quick start
-First, download and install C# in Visual Studio or VSCode - last version is required. 
 
 ## Features
 - Minimal size
