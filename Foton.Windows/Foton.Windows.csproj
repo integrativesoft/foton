@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>{789816C8-2B92-478A-9FE5-5CBE174DDA34}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -19,7 +19,7 @@
     <EmbeddedResource Include="..\Assets\favicon.ico" Link="Main\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CefSharp.WinForms" Version="98.1.210" />
+    <PackageReference Include="CefSharp.WinForms" Version="134.3.90" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
